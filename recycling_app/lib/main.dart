@@ -165,9 +165,12 @@ class HomePage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => SecondPage()),
               );
             },
-            icon: Icon(
+            icon: Image.asset('assets/images/logo.png'),
+            /*
+            Icon(
               Icons.person_outline,
             ),
+            */
           ),
         ],
       ),
