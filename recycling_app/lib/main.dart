@@ -21,7 +21,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 음식 사진 데이터
     List<Map<String, dynamic>> dataList = [
       {
         "category": "足立区 / Adaichi",
@@ -140,13 +139,12 @@ class HomePage extends StatelessWidget {
       },
     ];
 
-    // 화면에 보이는 영역
     return Scaffold(
       appBar: AppBar(
-        elevation: 0, // 그림자 없애기
-        backgroundColor: Colors.white, // 배경 색상
-        centerTitle: true, // title 중앙 정렬
-        iconTheme: IconThemeData(color: Colors.black), // app bar icon color
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           "Tokyo Wards",
           style: TextStyle(
@@ -156,7 +154,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
         actions: [
-          /// My Button
           IconButton(
             onPressed: () {
               print("go my page");
@@ -176,7 +173,6 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          /// 검색
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -192,7 +188,6 @@ class HomePage extends StatelessWidget {
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                // 돋보기 아이콘
                 prefixIcon: IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () {
@@ -203,44 +198,30 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Divider(height: 1),
-
-          /// 카테고리 목록
           Expanded(
             child: ListView.builder(
-              // 보여주려는 데이터 개수
               itemCount: dataList.length,
-              // itemCount 만큼 반복되며 화면에 보여주려는 위젯
-              // index가 0부터 dataList.length - 1까지 증가하며 전달됩니다.
               itemBuilder: (context, index) {
-                // dataList에서 index에 해당하는 data 꺼내기
                 Map<String, dynamic> data = dataList[index];
                 String category = data["category"];
                 String imgUrl = data["imgUrl"];
 
-                // 카드 형태의 위젯
                 return Card(
                   margin: const EdgeInsets.all(8),
-                  // 위젯들을 위로 중첩하기 위해 Stack 위젯 사용
                   child: Stack(
-                    alignment: Alignment.center, // 중앙 정렬
+                    alignment: Alignment.center,
                     children: [
-                      /// 배경 이미지
                       Image.network(
                         imgUrl,
-                        width: double.infinity, // 가득 채우기
+                        width: double.infinity,
                         height: 100,
-                        fit: BoxFit
-                            .cover, // 이미지 비율을 유지하며 주어진 width와 height를 가득 채우기
+                        fit: BoxFit.cover,
                       ),
-
-                      /// 배경 위에 글씨가 보이도록 반투명한 박스 추가
                       Container(
                         width: double.infinity,
                         height: 100,
-                        color: Colors.black.withOpacity(0.4), // 투명도 40%
+                        color: Colors.black.withOpacity(0.4),
                       ),
-
-                      /// 카테고리
                       Text(
                         category,
                         style: TextStyle(
@@ -256,9 +237,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-
-      /// AppBar 왼쪽에 아이콘을 누를 때 왼쪽에서 오른쪽으로 나오는 위젯
-      /// 해당 위젯을 추가하면 AppBar 왼쪽에 아이콘이 자동으로 추가됨
       drawer: Drawer(
         child: Column(
           children: [
@@ -273,10 +251,9 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               child: SizedBox(
-                width: double.infinity, // 가득 채우기
+                width: double.infinity,
                 child: Column(
                   children: [
-                    /// 동그란 배경
                     CircleAvatar(
                       radius: 36,
                       backgroundColor: Colors.white,
@@ -290,11 +267,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    /// 닉네임 상단 여백
                     SizedBox(height: 16),
-
-                    /// 닉네임
                     Text(
                       "Jimmy",
                       style: TextStyle(
@@ -302,8 +275,6 @@ class HomePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
-                    /// 이메일
                     Text(
                       "jimmy@gmail.com",
                       style: TextStyle(
@@ -315,9 +286,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-
-            /// 이벤트 배너
-            // 특정 비율로 위젯을 보여주기
 
             Container(
               width: double.infinity,
