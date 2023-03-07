@@ -10,7 +10,7 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        title: Text("About this app"),
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
       ),

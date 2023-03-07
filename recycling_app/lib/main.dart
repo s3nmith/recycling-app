@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'secondpage.dart';
+import 'aboutpage.dart';
 import 'camera.dart';
 void main() {
   runApp(MyApp());
@@ -64,6 +64,36 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Container(  
+            child: Center( 
+              child: OutlinedButton.icon(  
+                label: Text('Search Your Ward'),
+                icon: Icon(
+                  Icons.search,
+                  size: 24.0,
+                ),
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  primary: Colors.white,
+                  textStyle: TextStyle(
+                    fontSize: 24.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                  padding: EdgeInsets.all(8.0)
+                ),
+                onPressed: () {
+                  showSearch(
+                  context: context,
+                  // delegate to customize the search bar
+                  delegate: WardsSearchDelegate()
+                  );
+                },  
+              ),  
+            ),
+          ),
+          /* 
+          Textfield commented out for now
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -82,12 +112,14 @@ class HomePage extends StatelessWidget {
                 prefixIcon: IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () {
-                    print("돋보기 아이콘 클릭");
+                    print("Search icon was pressed");
                   },
                 ),
               ),
             ),
           ),
+          */
+
           Divider(height: 1),
           Expanded(
             child: ListView.builder(
@@ -227,4 +259,97 @@ class HomePage extends StatelessWidget {
   }
 }
 
-
+class WardsSearchDelegate extends SearchDelegate {
+  // Demo list to show querying
+  List<String> searchTerms = [
+    "Adachi",
+    "Arakawa",
+    "Bunkyō",
+    "Chiyoda",
+    "Chūō",
+    "Edogawa",
+    "Itabashi",
+    "Katsushika",
+    "Kita",
+    "Kōtō",
+    "Meguro",
+    "Minato",
+    "Nakano",
+    "Nerima",
+    "Ōta",
+    "Setagaya",
+    "Shibuya",
+    "Shinagawa",
+    "Shinjuku",
+    "Suginami",
+    "Sumida",
+    "Taitō",
+    "Toshima",
+  ];
+     
+  // first overwrite to
+  // clear the search text
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: Icon(Icons.clear),
+      ),
+    ];
+  }
+ 
+  // second overwrite to pop out of search menu
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: Icon(Icons.arrow_back),
+    );
+  }
+ 
+  // third overwrite to show query result
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var ward in searchTerms) {
+      if (ward.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(ward);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
+ 
+  // last overwrite to show the
+  // querying process at the runtime
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var ward in searchTerms) {
+      if (ward.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(ward);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
+}
