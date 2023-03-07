@@ -56,15 +56,17 @@ class _Cam extends State<CameraScreen> {
           children: [
             //i used icon buttons since they're shorter and easy but there is MaterialButton below too (test)
             IconButton(
-              icon: Icon(Icons.camera),
-                color: Color.fromARGB(255, 36, 244, 25),
+              icon: Icon(Icons.camera_alt_rounded),
+                color: Colors.blueAccent,
+                iconSize: 64,
                 onPressed: () {
                   pickImageCam();
                 }
             ),
             IconButton(
               icon: Icon(Icons.photo_album),
-                color: Color.fromARGB(255, 36, 244, 25),
+                color: Colors.blueAccent,
+                iconSize: 64,
                 onPressed: () {
                   pickImage();
                 }
