@@ -1,226 +1,203 @@
 import 'package:flutter/material.dart';
 import 'aboutpage.dart';
 import 'camera.dart';
+import 'wards.dart';
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState()=> HomePage();
+}
+
+class HomePage extends State<MyApp> {
+  List<Ward> wards = tokyoWards;
+  //* search function
+  void searchWard(String query) {
+    final suggestions = tokyoWards.where((ward) {
+      final wardName = ward.category.toLowerCase();
+      final input = query.toLowerCase();
+
+      return wardName.contains(input);
+    }).toList();
+
+    setState(() => wards = suggestions);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    List<Map<String, dynamic>> dataList = [
-      {
-        "category": "新宿区 / Shinjuku",
-        "imgUrl":
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Flag_of_Shinjuku%2C_Tokyo.svg/2560px-Flag_of_Shinjuku%2C_Tokyo.svg.png",
-      },
-    ];
-
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
-          "Tokyo Wards",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              print("go my page");
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SecondPage()),
-              );
-            },
-            icon: Image.asset('assets/images/logo.png'),
-            /*
-            Icon(
-              Icons.person_outline,
-            ),
-            */
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(  
-            child: Center( 
-              child: OutlinedButton.icon(  
-                label: Text('Search Your Ward'),
-                icon: Icon(
-                  Icons.search,
-                  size: 24.0,
-                ),
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
-                  primary: Colors.white,
-                  textStyle: TextStyle(
-                    fontSize: 24.0,
-                  ),
-                  shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-                  padding: EdgeInsets.all(8.0)
-                ),
-                onPressed: () {
-                  showSearch(
-                  context: context,
-                  // delegate to customize the search bar
-                  delegate: WardsSearchDelegate()
-                  );
-                },  
-              ),  
+      home: Scaffold(
+        //* Appbar
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.black),
+          title: Text(
+            "Tokyo Wards",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          /* 
-          Textfield commented out for now
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              autofocus: true,
-              onChanged: (text) {
-                print(text);
-              },
-              onSubmitted: (text) {
-                print("on submitted : $text");
-              },
-              decoration: InputDecoration(
-                hintText: "Search Tokyo Wards",
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                prefixIcon: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    print("Search icon was pressed");
-                  },
-                ),
-              ),
-            ),
-          ),
-          */
-
-          Divider(height: 1),
-          Expanded(
-            child: ListView.builder(
-              itemCount: dataList.length,
-              itemBuilder: (context, index) {
-                Map<String, dynamic> data = dataList[index];
-                String category = data["category"];
-                String imgUrl = data["imgUrl"];
-                
-                return GestureDetector(
-                  child: Card(
-                    margin: const EdgeInsets.all(8),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Image.network(
-                          imgUrl,
-                          width: double.infinity,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: 100,
-                          color: Colors.black.withOpacity(0.4),
-                        ),
-                        Text(
-                          category,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 26,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>CameraScreen()));
-                  }
+          actions: [
+            IconButton(
+              onPressed: () {
+                print("go to abouts page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondPage()),
                 );
               },
+              icon: Image.asset('assets/images/logo.png'),
             ),
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            // Drawer 윗 부분
-            DrawerHeader(
-              margin: const EdgeInsets.all(0),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    "https://img.freepik.com/premium-photo/leaves-twig-corner-white-background_23-2148217806.jpg?w=1800",
+          ],
+        ),
+
+        body: Column(
+          children: <Widget>[
+            //*This block of code is the search bar
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: "Search Tokyo Wards",
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  prefixIcon: const Icon(Icons.search),
+                  ),
+                  onChanged: searchWard,
+                ),
+              ),
+
+            //*Displays the cards
+            Divider(height: 1),
+            Expanded(
+              child: ListView.builder(
+                itemCount: wards.length,
+                itemBuilder: (context, index) {
+                  final ward = wards[index];;
+                  String category = ward.category;
+                  String imgUrl = ward.imgUrl;
+                  
+                  return GestureDetector(
+                    child: Card(
+                      margin: const EdgeInsets.all(8),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Image.network(
+                            imgUrl,
+                            width: double.infinity,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: 100,
+                            color: Colors.black.withOpacity(0.4),
+                          ),
+                          Text(
+                            category,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 26,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder:(context)=>CameraScreen()));
+                    }
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+        //* Drawer
+        drawer: Drawer(
+          child: Column(
+            children: [
+              // Drawer 윗 부분
+              DrawerHeader(
+                margin: const EdgeInsets.all(0),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      "https://img.freepik.com/premium-photo/leaves-twig-corner-white-background_23-2148217806.jpg?w=1800",
+                    ),
+                  ),
+                ),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 36,
+                        backgroundColor: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+
+                          /// 이미지
+                          child: Image.network(
+                            "https://i.ibb.co/CwzHq4z/trans-logo-512.png",
+                            width: 62,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      //! Temporary place holder, change to user's name and email address later
+                      Text(
+                        "Jimmy",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "jimmy@gmail.com",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              child: SizedBox(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 36,
-                      backgroundColor: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
 
-                        /// 이미지
-                        child: Image.network(
-                          "https://i.ibb.co/CwzHq4z/trans-logo-512.png",
-                          width: 62,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      "Jimmy",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      "jimmy@gmail.com",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
+              //*History Tab
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(top: 430),
+                child: ListTile(
+                  title: Text(
+                    'History',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black,
+                  ),
+                  onTap: () {},
                 ),
               ),
-            ),
 
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 430),
-              child: ListTile(
+              //* Settings Tab
+              ListTile(
                 title: Text(
-                  'History',
+                  'Setting',
                   style: TextStyle(fontSize: 18),
                 ),
                 trailing: Icon(
@@ -229,127 +206,24 @@ class HomePage extends StatelessWidget {
                 ),
                 onTap: () {},
               ),
-            ),
 
-            ListTile(
-              title: Text(
-                'Setting',
-                style: TextStyle(fontSize: 18),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black,
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text(
-                'Log out',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.red,
+              //* Logout tab
+              ListTile(
+                title: Text(
+                  'Log out',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.red,
+                  ),
                 ),
+                onTap: () {},
               ),
-              onTap: () {},
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 }
 
-class WardsSearchDelegate extends SearchDelegate {
-  // Demo list to show querying
-  List<String> searchTerms = [
-    "Adachi",
-    "Arakawa",
-    "Bunkyō",
-    "Chiyoda",
-    "Chūō",
-    "Edogawa",
-    "Itabashi",
-    "Katsushika",
-    "Kita",
-    "Kōtō",
-    "Meguro",
-    "Minato",
-    "Nakano",
-    "Nerima",
-    "Ōta",
-    "Setagaya",
-    "Shibuya",
-    "Shinagawa",
-    "Shinjuku",
-    "Suginami",
-    "Sumida",
-    "Taitō",
-    "Toshima",
-  ];
-     
-  // first overwrite to
-  // clear the search text
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        onPressed: () {
-          query = '';
-        },
-        icon: Icon(Icons.clear),
-      ),
-    ];
-  }
- 
-  // second overwrite to pop out of search menu
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        close(context, null);
-      },
-      icon: Icon(Icons.arrow_back),
-    );
-  }
- 
-  // third overwrite to show query result
-  @override
-  Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var ward in searchTerms) {
-      if (ward.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(ward);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
-  }
- 
-  // last overwrite to show the
-  // querying process at the runtime
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var ward in searchTerms) {
-      if (ward.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(ward);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
-  }
-}
+

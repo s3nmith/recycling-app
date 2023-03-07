@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 //I just moved the second page here because of clutter on main.dart
 //updates to come -->
 class SecondPage extends StatelessWidget {
@@ -8,21 +7,12 @@ class SecondPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO write an about page about our app
     return Scaffold(
       appBar: AppBar(
-        title: Text("About this app"),
+        title: Text("About This App"),
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print("클릭 되었습니다!");
-        },
-        backgroundColor: Colors.white,
-        child: const Icon(
-          Icons.add,
-          color: Colors.green,
-        ),
       ),
     );
   }
