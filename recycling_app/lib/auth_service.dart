@@ -21,6 +21,23 @@ class AuthService extends ChangeNotifier {
       onError("Please type pw.");
       return;
     }
+
+    // firebase auth 회원 가입
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // 성공 함수 호출
+      onSuccess();
+    } on FirebaseAuthException catch (e) {
+      // Firebase auth 에러 발생
+      onError(e.message!);
+    } catch (e) {
+      // Firebase auth 이외의 에러 발생
+      onError(e.toString());
+    }
   }
 
   void signIn({
@@ -30,6 +47,30 @@ class AuthService extends ChangeNotifier {
     required Function(String err) onError, // 에러 발생시 호출되는 함수
   }) async {
     // 로그인
+    if (email.isEmpty) {
+      onError('Please type id');
+      return;
+    } else if (password.isEmpty) {
+      onError('Please type pw');
+      return;
+    }
+
+    // 로그인 시도
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      onSuccess(); // 성공 함수 호출
+      notifyListeners(); // 로그인 상태 변경 알림
+    } on FirebaseAuthException catch (e) {
+      // firebase auth 에러 발생
+      onError(e.message!);
+    } catch (e) {
+      // Firebase auth 이외의 에러 발생
+      onError(e.toString());
+    }
   }
 
   void signOut() async {

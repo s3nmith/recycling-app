@@ -39,7 +39,7 @@ dependencies:
   introduction_screen: ^3.1.6
   firebase_core: ^2.7.1
   firebase_auth: ^4.2.10
-  cloud_firestore: ^3.4.8
+  cloud_firestore: ^4.4.3
   provider: ^6.0.2
 
 dev_dependencies:

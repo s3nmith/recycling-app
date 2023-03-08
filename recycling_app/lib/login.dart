@@ -81,7 +81,25 @@ class _LoginPageState extends State<LoginPage> {
                 /// 로그인 버튼
                 ElevatedButton(
                   child: Text("login", style: TextStyle(fontSize: 21)),
-                  onPressed: () {},
+                  onPressed: () {
+                    // 로그인
+                    authService.signIn(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      onSuccess: () {
+                        // 로그인 성공
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("로그인 성공"),
+                        ));
+                      },
+                      onError: (err) {
+                        // 에러 발생
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(err),
+                        ));
+                      },
+                    );
+                  },
                 ),
 
                 /// 회원가입 버튼
@@ -93,11 +111,15 @@ class _LoginPageState extends State<LoginPage> {
                       password: passwordController.text,
                       onSuccess: () {
                         // 회원가입 성공
-                        print("signfup successful");
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("signup successful"),
+                        ));
                       },
                       onError: (err) {
                         // 에러 발생
-                        print("signup failed : $err");
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(err),
+                        ));
                       },
                     );
                   },
