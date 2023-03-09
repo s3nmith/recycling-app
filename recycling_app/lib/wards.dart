@@ -9,6 +9,7 @@ class Ward {
 }
 
 //* The list of wards were moved here
+//! Want to move the images into the assets folder instead of internet
 const tokyoWards = [
   Ward(
     category: '足立区 / Adaichi',

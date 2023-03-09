@@ -136,7 +136,7 @@ class HomePage extends State<MyApp> {
                   drawer: Drawer(
                     child: Column(
                       children: [
-                        // Drawer 윗 부분
+                        // Drawer
                         DrawerHeader(
                           margin: const EdgeInsets.all(0),
                           decoration: BoxDecoration(
