@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'auth_service.dart';
+import 'main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // main 함수에서 async 사용하기 위함
@@ -23,9 +25,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = context.read<AuthService>().currentUser();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: user == null ? LoginPage() : App(),
     );
   }
 }
@@ -46,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Consumer<AuthService>(
       builder: (context, authService, child) {
+        final user = authService.currentUser();
         return Scaffold(
           appBar: AppBar(title: Text("Recycling App")),
           body: SingleChildScrollView(
@@ -56,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 /// 현재 유저 로그인 상태
                 Center(
                   child: Text(
-                    "login",
+                    user == null ? "Please login" : "Welcome ${user.email}! 👋",
                     style: TextStyle(
                       fontSize: 24,
                     ),
@@ -67,14 +71,14 @@ class _LoginPageState extends State<LoginPage> {
                 /// 이메일
                 TextField(
                   controller: emailController,
-                  decoration: InputDecoration(hintText: "id"),
+                  decoration: InputDecoration(hintText: "email"),
                 ),
 
                 /// 비밀번호
                 TextField(
                   controller: passwordController,
                   obscureText: false, // 비밀번호 안보이게
-                  decoration: InputDecoration(hintText: "pw"),
+                  decoration: InputDecoration(hintText: "password"),
                 ),
                 SizedBox(height: 32),
 
@@ -89,8 +93,14 @@ class _LoginPageState extends State<LoginPage> {
                       onSuccess: () {
                         // 로그인 성공
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("로그인 성공"),
+                          content: Text("login successful"),
                         ));
+
+                        // App으로 이동
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => App()),
+                        );
                       },
                       onError: (err) {
                         // 에러 발생

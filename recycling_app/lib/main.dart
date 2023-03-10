@@ -1,22 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'aboutpage.dart';
 import 'camera.dart';
 import 'wards.dart';
 import 'login.dart';
+import 'auth_service.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => HomePage();
+  State<App> createState() => HomePage();
 }
 
-class HomePage extends State<MyApp> {
+class HomePage extends State<App> {
   List<Ward> wards = tokyoWards;
   //* search function
   void searchWard(String query) {
@@ -60,7 +62,7 @@ class HomePage extends State<MyApp> {
                                 builder: (context) => SecondPage()),
                           );
                         },
-                        icon: Image.asset('assets/images/logo.png'),
+                        icon: const Icon(Icons.info_outline_rounded),
                       ),
                     ],
                   ),
@@ -158,7 +160,7 @@ class HomePage extends State<MyApp> {
 
                                     /// 이미지
                                     child: Image.network(
-                                      "https://i.ibb.co/CwzHq4z/trans-logo-512.png",
+                                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
                                       width: 62,
                                     ),
                                   ),
@@ -166,14 +168,14 @@ class HomePage extends State<MyApp> {
                                 SizedBox(height: 16),
                                 //! Temporary place holder, change to user's name and email address later
                                 Text(
-                                  "Jimmy",
+                                  "User",
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  "jimmy@gmail.com",
+                                  "a@a.com",
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
@@ -223,7 +225,14 @@ class HomePage extends State<MyApp> {
                               color: Colors.red,
                             ),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            context.read<AuthService>().signOut();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
+                          },
                         ),
                       ],
                     ),
