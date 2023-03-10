@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: isOnboarded ? Login() : OnboardingPage(),
+      //test by replacing 'Login()' with 'HomePage()' --> there's one more at the end
     );
   }
 }
@@ -88,6 +89,7 @@ class OnboardingPage extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => Login(),
+              //test by replacing 'Login()' with 'HomePage()'
             ),
           );
         },
