@@ -6,6 +6,7 @@ import 'camera.dart';
 import 'wards.dart';
 import 'login.dart';
 import 'auth_service.dart';
+import 'onboarding.dart';
 
 void main() {
   runApp(App());
@@ -59,7 +60,7 @@ class HomePage extends State<App> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SecondPage()),
+                                builder: (context) => OnboardingPage()),
                           );
                         },
                         icon: const Icon(Icons.info_outline_rounded),

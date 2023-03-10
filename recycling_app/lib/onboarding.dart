@@ -7,11 +7,7 @@ import 'auth_service.dart';
 import 'login.dart';
 import 'main.dart';
 
-late SharedPreferences prefs;
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
@@ -20,13 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isOnboarded = prefs.getBool("isOnboarded") ?? false;
-    //if true, onboarding page
-    //if false, loginpage/homepage
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isOnboarded ? Login() : OnboardingPage(),
       //test by replacing 'Login()' with 'HomePage()' --> there's one more at the end
     );
   }
@@ -82,13 +73,10 @@ class OnboardingPage extends StatelessWidget {
         next: Text("Next", style: TextStyle(fontWeight: FontWeight.w600)),
         done: Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
         onDone: () {
-          prefs.setBool("isOnboarded", true);
-          // If 'Done' clicked, isOnboarded = true
-
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Login(),
+              builder: (context) => App(),
               //test by replacing 'Login()' with 'HomePage()'
             ),
           );
@@ -109,9 +97,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              prefs.clear();
-            },
+            onPressed: () {},
             icon: Icon(Icons.delete),
           )
         ],
