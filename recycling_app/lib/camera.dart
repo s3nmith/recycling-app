@@ -49,43 +49,44 @@ class _Cam extends State<CameraScreen> {
     return Scaffold(
       //customise the app bar here please, it jus looks very default now
       appBar: AppBar(
-        title: const Text("Pick Your Trash Picture"),
+        title: const Text("Choose Your Trash Picture"),
       ),
       body: Center(
         child: Column(
           children: [
-            //i used icon buttons since they're shorter and easy but there is MaterialButton below too (test)
-            IconButton(
-              icon: Icon(Icons.camera_alt_rounded),
-                color: Colors.blueAccent,
-                iconSize: 64,
-                onPressed: () {
-                  pickImageCam();
-                }
+            //* Take picture button
+            ElevatedButton.icon(
+              icon: const Icon(
+                Icons.camera_alt_outlined,
+                color: Colors.white,
+              ),
+              label: const Text('Take With Camera'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
+                onPrimary: Colors.white,
+              ),
+              onPressed: () {
+                pickImageCam();
+              },
             ),
-            IconButton(
-              icon: Icon(Icons.photo_album),
-                color: Colors.blueAccent,
-                iconSize: 64,
-                onPressed: () {
-                  pickImage();
-                }
+            //* Pick from gallery button
+            ElevatedButton.icon(
+              icon: const Icon(
+                Icons.photo_album_outlined,
+                color: Colors.white,
+              ),
+              label: const Text('Choose from Gallery'),
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromARGB(255, 195, 138, 24),
+                onPrimary: Colors.white,
+              ),
+              onPressed: () {
+                pickImage();
+              },
             ),
-
-            // MaterialButton(
-            //     color: Colors.blue,
-            //     child: const Text(
-            //         "Pick Image from Camera",
-            //         style: TextStyle(
-            //             color: Colors.white70, fontWeight: FontWeight.bold
-            //         )
-            //     ),
-            //     onPressed: () {
-            //     }
-            // ),
-
 
             //format the box below to get a size you like 
+            //! Do we need this? @Lahiru (or is it for debugging?)
             SizedBox(height: 10,),
             image != null ? Image.file(image!): Text("No image")
           ],
