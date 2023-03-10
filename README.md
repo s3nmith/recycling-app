@@ -6,11 +6,12 @@ Some of the SDG's covered in our project:
 ## Running the program
 
 After downloading this repository as a zip or cloning it. Open it using Visual Studio Code or Android Studio. Make sure you have a working Android Emulator or IOS Emulator.
-Run the following command:
-  flutter run
+
+Run the following command
+    flutter run
 
 or
-  flutter run --no-sound-null-safety  
+    flutter run --no-sound-null-safety  
 
 
 
