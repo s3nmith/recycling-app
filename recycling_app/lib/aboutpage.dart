@@ -53,10 +53,6 @@ class OnboardingPage extends StatelessWidget {
           PageViewModel(
             title: "???",
             body: "???",
-            image: Image.asset(
-              'assets/images/harukipfp.JPG',
-              height: 300,
-            ),
             decoration: PageDecoration(
               titleTextStyle: TextStyle(
                 color: Colors.blueAccent,
