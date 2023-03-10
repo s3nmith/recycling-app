@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:recycling_app/onboarding.dart';
 
 import 'auth_service.dart';
 import 'main.dart';
@@ -15,13 +16,13 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
       ],
-      child: const MyApp(),
+      child: const Login(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                         // Move to App
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => App()),
+                          MaterialPageRoute(
+                            builder: (context) => App(),
+                          ),
                         );
                       },
                       onError: (err) {
