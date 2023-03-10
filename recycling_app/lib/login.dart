@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 25),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Image.asset(
                     'assets/images/logo.png',
                     height: 200,
