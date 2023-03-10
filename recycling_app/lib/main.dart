@@ -6,7 +6,7 @@ import 'camera.dart';
 import 'wards.dart';
 import 'login.dart';
 import 'auth_service.dart';
-import 'onboarding.dart';
+import 'aboutpage.dart';
 
 void main() {
   runApp(App());

@@ -1,72 +1,107 @@
 import 'package:flutter/material.dart';
+import 'package:introduction_screen/introduction_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:recycling_app/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'auth_service.dart';
+import 'login.dart';
+import 'main.dart';
 
-//I just moved the second page here because of clutter on main.dart
-//updates to come -->
-class SecondPage extends StatelessWidget {
-  const SecondPage({Key? key}) : super(key: key);
+void main() async {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO write an about page about our app(in progress)
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("About This App"),
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-            //* "Steps"
-            const Align(
-              alignment: Alignment(-0.9,-0.9),
-              child: Text(
-                "Steps",
-                style: TextStyle(
-                  shadows: [
-                    Shadow(
-                      color: Colors.black,
-                      offset: Offset(0, -8)
-                    )
-                  ],
-                  color: Colors.transparent,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.blueAccent,
-                  decorationThickness: 3,
-                  fontSize: 36,
-                )
-              )
-            ),
-            const SizedBox(height: 30),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      //test by replacing 'Login()' with 'HomePage()' --> there's one more at the end
+    );
+  }
+}
 
-            //* 1 and image
-            Container(
-              padding: const EdgeInsets.all(15),
-              color: Colors.lightGreenAccent,
-              alignment: Alignment.topLeft,
-              child: Text( //! Bold the 1
-                "1. Search and choose the ward in Tokyo.",
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.black,
-                )
+class OnboardingPage extends StatelessWidget {
+  const OnboardingPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: IntroductionScreen(
+        pages: [
+          PageViewModel(
+            title: "What is recycling app?",
+            body: "...",
+            image: Padding(
+              padding: EdgeInsets.only(top: 92),
+              child: Image.asset('assets/images/logo.png'),
+            ),
+            decoration: PageDecoration(
+              titleTextStyle: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              bodyTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              color: Colors.lightGreenAccent,
-              alignment: Alignment.topLeft,
-              child: Image.asset(
-                //! Change this image later
-                'assets/images/wardsfornow.png',
-                height: 400),
-            )
+          ),
+          PageViewModel(
+            title: "???",
+            body: "???",
+            image: Image.asset(
+              'assets/images/harukipfp.JPG',
+              height: 300,
+            ),
+            decoration: PageDecoration(
+              titleTextStyle: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              bodyTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+        next: Text("Next", style: TextStyle(fontWeight: FontWeight.w600)),
+        done: Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
+        onDone: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => App(),
+              //test by replacing 'Login()' with 'HomePage()'
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
 
-            //* explanation about 1
-          ]
-        )
-      )
+// from here is temporary
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.delete),
+          )
+        ],
+      ),
     );
   }
 }
