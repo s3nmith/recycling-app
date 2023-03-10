@@ -8,8 +8,8 @@ import 'auth_service.dart';
 import 'main.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // main 함수에서 async 사용하기 위함
-  await Firebase.initializeApp(); // firebase 앱 시작
+  WidgetsFlutterBinding.ensureInitialized(); // async
+  await Firebase.initializeApp(); // firebase start
   runApp(
     MultiProvider(
       providers: [
@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/// 로그인 페이지
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -51,16 +50,30 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context, authService, child) {
         final user = authService.currentUser();
         return Scaffold(
-          appBar: AppBar(title: Text("Recycling App")),
+          appBar: AppBar(
+            title: Text("Recycling App"),
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+            backgroundColor: Colors.white,
+          ),
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                /// 현재 유저 로그인 상태
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 25),
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    height: 200,
+                  ),
+                ),
                 Center(
                   child: Text(
-                    user == null ? "Please login" : "Welcome ${user.email}! 👋",
+                    user == null ? "Login" : "Welcome ${user.email}! 👋",
                     style: TextStyle(
                       fontSize: 24,
                     ),
@@ -68,42 +81,42 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 32),
 
-                /// 이메일
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(hintText: "email"),
                 ),
 
-                /// 비밀번호
                 TextField(
                   controller: passwordController,
-                  obscureText: false, // 비밀번호 안보이게
+                  obscureText: false,
                   decoration: InputDecoration(hintText: "password"),
                 ),
                 SizedBox(height: 32),
 
-                /// 로그인 버튼
                 ElevatedButton(
-                  child: Text("login", style: TextStyle(fontSize: 21)),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.lightGreen,
+                  ),
+                  child: Text("login",
+                      style:
+                          TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
                   onPressed: () {
-                    // 로그인
                     authService.signIn(
                       email: emailController.text,
                       password: passwordController.text,
                       onSuccess: () {
-                        // 로그인 성공
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("login successful"),
                         ));
 
-                        // App으로 이동
+                        // Move to App
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => App()),
                         );
                       },
                       onError: (err) {
-                        // 에러 발생
+                        // error
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(err),
                         ));
@@ -112,21 +125,25 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
 
-                /// 회원가입 버튼
+                /// signup
                 ElevatedButton(
-                  child: Text("signup", style: TextStyle(fontSize: 21)),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                  ),
+                  child: Text("signup",
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
                   onPressed: () {
                     authService.signUp(
                       email: emailController.text,
                       password: passwordController.text,
                       onSuccess: () {
-                        // 회원가입 성공
+                        // successful
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("signup successful"),
                         ));
                       },
                       onError: (err) {
-                        // 에러 발생
+                        // error
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(err),
                         ));
