@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:recycling_app/login.dart';
+import 'package:recycling_app/homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'auth_service.dart';
-import 'login.dart';
+import 'homepage.dart';
 import 'main.dart';
 
 void main() async {

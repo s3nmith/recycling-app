@@ -1,243 +1,165 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'aboutpage.dart';
-import 'camera.dart';
-import 'wards.dart';
-import 'login.dart';
+import 'package:recycling_app/aboutpage.dart';
+
 import 'auth_service.dart';
-import 'aboutpage.dart';
+import 'homepage.dart';
 
-void main() {
-  runApp(App());
+//previously, "login.dart"
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // async
+  await Firebase.initializeApp(); // firebase start
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthService()),
+      ],
+      child: const Login(),
+    ),
+  );
 }
 
-class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
-
-  @override
-  State<App> createState() => HomePage();
-}
-
-class HomePage extends State<App> {
-  List<Ward> wards = tokyoWards;
-  //* search function
-  void searchWard(String query) {
-    final suggestions = tokyoWards.where((ward) {
-      final wardName = ward.category.toLowerCase();
-      final input = query.toLowerCase();
-
-      return wardName.contains(input);
-    }).toList();
-
-    setState(() => wards = suggestions);
-  }
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    User? user = context.read<AuthService>().currentUser();
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Builder(
-            builder: (context) => Scaffold(
-                  //* Appbar
-                  appBar: AppBar(
-                    elevation: 0,
+      debugShowCheckedModeBanner: false,
+      home: user == null ? LoginPage() : App(),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AuthService>(
+      builder: (context, authService, child) {
+        final user = authService.currentUser();
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("Recycling App"),
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+            backgroundColor: Colors.white,
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    height: 200,
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    user == null ? "Login" : "Welcome ${user.email}! 👋",
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 32),
+
+                TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(hintText: "email"),
+                ),
+
+                TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(hintText: "password"),
+                ),
+                SizedBox(height: 32),
+
+                ElevatedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.lightGreen,
+                  ),
+                  child: Text("login",
+                      style:
+                          TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
+                  onPressed: () {
+                    authService.signIn(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      onSuccess: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("login successful"),
+                        ));
+
+                        // Move to App
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => App(),
+                          ),
+                        );
+                      },
+                      onError: (err) {
+                        // error
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(err),
+                        ));
+                      },
+                    );
+                  },
+                ),
+
+                /// signup
+                ElevatedButton(
+                  style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    centerTitle: true,
-                    iconTheme: IconThemeData(color: Colors.black),
-                    title: Text(
-                      "Tokyo Wards",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    actions: [
-                      IconButton(
-                        onPressed: () {
-                          print("go to abouts page");
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OnboardingPage()),
-                          );
-                        },
-                        icon: const Icon(Icons.info_outline_rounded),
-                      ),
-                    ],
                   ),
-
-                  body: Column(
-                    children: <Widget>[
-                      //*This block of code is the search bar
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          autofocus: true,
-                          decoration: InputDecoration(
-                            hintText: "Search Tokyo Wards",
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            prefixIcon: const Icon(Icons.search),
-                          ),
-                          onChanged: searchWard,
-                        ),
-                      ),
-
-                      //*Displays the cards
-                      Divider(height: 1),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: wards.length,
-                          itemBuilder: (context, index) {
-                            final ward = wards[index];
-                            ;
-                            String category = ward.category;
-                            String imgUrl = ward.imgUrl;
-
-                            return GestureDetector(
-                                child: Card(
-                                  margin: const EdgeInsets.all(8),
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Image.network(
-                                        imgUrl,
-                                        width: double.infinity,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      Container(
-                                        width: double.infinity,
-                                        height: 100,
-                                        color: Colors.black.withOpacity(0.4),
-                                      ),
-                                      Text(
-                                        category,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 26,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => CameraScreen()));
-                                });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  //* Drawer
-                  drawer: Drawer(
-                    child: Column(
-                      children: [
-                        // Drawer
-                        DrawerHeader(
-                          margin: const EdgeInsets.all(0),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                "https://img.freepik.com/premium-photo/leaves-twig-corner-white-background_23-2148217806.jpg?w=1800",
-                              ),
-                            ),
-                          ),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 36,
-                                  backgroundColor: Colors.white,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-
-                                    /// 이미지
-                                    child: Image.network(
-                                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-                                      width: 62,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 16),
-                                //! Temporary place holder, change to user's name and email address later
-                                Text(
-                                  "User",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  "a@a.com",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        //*History Tab
-                        Container(
-                          width: double.infinity,
-                          margin: EdgeInsets.only(top: 430),
-                          child: ListTile(
-                            title: Text(
-                              'History',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            trailing: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.black,
-                            ),
-                            onTap: () {},
-                          ),
-                        ),
-
-                        //* Settings Tab
-                        ListTile(
-                          title: Text(
-                            'Setting',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.black,
-                          ),
-                          onTap: () {},
-                        ),
-
-                        //* Logout tab
-                        ListTile(
-                          title: Text(
-                            'Log out',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.red,
-                            ),
-                          ),
-                          onTap: () {
-                            context.read<AuthService>().signOut();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                )));
+                  child: Text("signup",
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                  onPressed: () {
+                    authService.signUp(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      onSuccess: () {
+                        // successful
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("signup successful"),
+                        ));
+                      },
+                      onError: (err) {
+                        // error
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(err),
+                        ));
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
