@@ -99,20 +99,32 @@ class HomePage extends State<App> {
 
                             return GestureDetector(
                                 child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  elevation: 2,
                                   margin: const EdgeInsets.all(8),
                                   child: Stack(
                                     alignment: Alignment.center,
                                     children: [
-                                      Image.asset(
-                                        imgUrl,
-                                        width: double.infinity,
-                                        height: 100,
-                                        fit: BoxFit.cover,
+                                      Container(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.asset(
+                                            imgUrl,
+                                            width: double.infinity,
+                                            height: 100,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
                                       Container(
                                         width: double.infinity,
                                         height: 100,
-                                        color: Colors.black.withOpacity(0.4),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.black.withOpacity(0.4),
+                                        ),
                                       ),
                                       Text(
                                         category,
@@ -143,8 +155,8 @@ class HomePage extends State<App> {
                           margin: const EdgeInsets.all(0),
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(
-                                "https://img.freepik.com/premium-photo/leaves-twig-corner-white-background_23-2148217806.jpg?w=1800",
+                              image: AssetImage(
+                                "assets/images/leaves.png",
                               ),
                             ),
                           ),
