@@ -103,7 +103,7 @@ class HomePage extends State<App> {
                                   child: Stack(
                                     alignment: Alignment.center,
                                     children: [
-                                      Image.network(
+                                      Image.asset(
                                         imgUrl,
                                         width: double.infinity,
                                         height: 100,
