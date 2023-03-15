@@ -68,27 +68,28 @@ class _Cam extends State<CameraScreen> {
                         Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
+                              padding:
+                                  const EdgeInsets.only(top: 60, bottom: 10.0),
                               child: SizedBox(
-                                height: 75,
-                                width: 400,
+                                height: 55,
+                                width: 380,
                                 child: ElevatedButton.icon(
                                   icon: const Icon(
                                     Icons.analytics_outlined,
                                     color: Colors.white,
-                                    size: 50,
+                                    size: 40,
                                   ),
-                                  label: const Text('Analyze',style: TextStyle(fontWeight: FontWeight.w500)),
+                                  label: const Text('  Analyze',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500)),
                                   style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0)
-                                    ),
-                                    primary: Colors.blue,
-                                    onPrimary: Colors.white,
-                                    textStyle: const TextStyle(fontSize: 30)
-                                  ),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      primary: Colors.blue,
+                                      onPrimary: Colors.white,
+                                      textStyle: const TextStyle(fontSize: 18)),
                                   onPressed: () {
-                                    print("analysis");
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -98,43 +99,68 @@ class _Cam extends State<CameraScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 100),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                ElevatedButton.icon(
-                                  icon: const Icon(
-                                    Icons.camera_alt_outlined,
-                                    color: Colors.white,
-                                  ),
-                                  label: const Text('Retake'),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0)
+                                SizedBox(
+                                  height: 55,
+                                  width: 380,
+                                  child: ElevatedButton.icon(
+                                    icon: const Icon(
+                                      Icons.camera_alt_outlined,
+                                      color: Colors.white,
+                                      size: 40,
                                     ),
-                                    primary: Colors.green,
-                                    onPrimary: Colors.white,
+                                    label: const Text('  Retake',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500)),
+                                    style: ElevatedButton.styleFrom(
+                                        padding: EdgeInsets.only(right: 50),
+                                        primary: Colors.green,
+                                        onPrimary: Colors.white,
+                                        //shadowColor: Colors.blue,
+                                        //elevation: 2,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        textStyle:
+                                            const TextStyle(fontSize: 18)),
+                                    onPressed: () {
+                                      pickImageCam();
+                                    },
                                   ),
-                                  onPressed: () {
-                                    pickImageCam();
-                                  },
                                 ),
-                                ElevatedButton.icon(
-                                  icon: const Icon(
-                                    Icons.photo_album_outlined,
-                                    color: Colors.white,
-                                  ),
-                                  label: const Text('Rechoose from Gallery'),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0)
+                                SizedBox(height: 10),
+                                SizedBox(
+                                  height: 55,
+                                  width: 380,
+                                  child: ElevatedButton.icon(
+                                    icon: const Icon(
+                                      Icons.photo_album_outlined,
+                                      color: Colors.white,
+                                      size: 40,
                                     ),
-                                    primary: Colors.orange,
-                                    onPrimary: Colors.white,
+                                    label: const Text(
+                                      '  Rechoose from Gallery',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        padding: EdgeInsets.only(right: 37),
+                                        primary: Colors.orange,
+                                        onPrimary: Colors.white,
+                                        //shadowColor: Colors.blue,
+                                        //elevation: 2,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        textStyle:
+                                            const TextStyle(fontSize: 18)),
+                                    onPressed: () {
+                                      pickImage();
+                                    },
                                   ),
-                                  onPressed: () {
-                                    pickImage();
-                                  },
                                 ),
                               ],
                             ),
@@ -150,37 +176,33 @@ class _Cam extends State<CameraScreen> {
                           Align(
                             alignment: Alignment.topRight,
                             child: SizedBox(
-                              child: Image.asset(
                                 height: 175,
-                                'assets/images/ume.png'
-                              )
-                            ),
+                                child: Image.asset(
+                                    height: 175, 'assets/images/ume.png')),
                           ),
-                          SizedBox(height: 100),
+                          SizedBox(height: 62),
                           SizedBox(
-                            height: 65,
-                            width: 400,
+                            height: 55,
+                            width: 380,
                             child: ElevatedButton.icon(
                               icon: const Icon(
                                 Icons.camera_alt_outlined,
                                 color: Colors.white,
                                 size: 40,
                               ),
-                              label: const Text(
-                                '       Take with Camera',
-                                style: TextStyle(fontWeight: FontWeight.w500)
-                              ),
+                              label: const Text('       Take with Camera',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.w500)),
                               style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.only(right: 50),
-                                primary: Colors.green,
-                                onPrimary: Colors.white,
-                                //shadowColor: Colors.blue,
-                                //elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                textStyle: const TextStyle(fontSize: 20)
-                              ),
+                                  padding: EdgeInsets.only(right: 50),
+                                  primary: Colors.green,
+                                  onPrimary: Colors.white,
+                                  //shadowColor: Colors.blue,
+                                  //elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  textStyle: const TextStyle(fontSize: 18)),
                               onPressed: () {
                                 pickImageCam();
                               },
@@ -188,41 +210,39 @@ class _Cam extends State<CameraScreen> {
                           ),
                           SizedBox(height: 10),
                           SizedBox(
-                            height: 65,
-                            width: 400,
+                            height: 55,
+                            width: 380,
                             child: ElevatedButton.icon(
                               icon: const Icon(
                                 Icons.photo_album_outlined,
                                 color: Colors.white,
                                 size: 40,
                               ),
-                              label: const Text(
-                                '     Choose from Gallery',
-                                style: TextStyle(fontWeight: FontWeight.w500)
-                              ),
+                              label: const Text('     Choose from Gallery',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.w500)),
                               style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.only(right: 37),
-                                primary: Colors.orange,
-                                onPrimary: Colors.white,
-                                //shadowColor: Colors.blue,
-                                //elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                textStyle: const TextStyle(fontSize: 20)
-                              ),
+                                  padding: EdgeInsets.only(right: 37),
+                                  primary: Colors.orange,
+                                  onPrimary: Colors.white,
+                                  //shadowColor: Colors.blue,
+                                  //elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  textStyle: const TextStyle(fontSize: 18)),
                               onPressed: () {
                                 pickImage();
                               },
                             ),
                           ),
-                          SizedBox(height: 245),
-                          SizedBox(
-                            child: Image.asset(
-                              height: 100,
-                              'assets/images/bottomleaves.png'
-                            )
-                          )
+                          SizedBox(height: 155),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: SizedBox(
+                              height: 130,
+                            ),
+                          ),
                         ],
                       ),
                     ),
