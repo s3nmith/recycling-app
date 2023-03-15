@@ -1,0 +1,19 @@
+ガラス・Glass
+ゴム、皮革製品・Rubber,Leather
+スプレー缶、カセットボンベ・Spray Can, Gas Canister
+ビニール傘・Plastic Umbrella
+びん・Bottle
+プラスチック・Plastic
+ペットボトル・Plastic Bottle
+ライター・Lighter
+乾電池・Battery
+古紙・Waste Paper
+少量の木くず、葉・Twigs,Leaves
+生ごみ・Biodegradable Waste
+紙くず・Paper Scrap
+缶・Can
+蛍光管・Fluorescent light
+衣類、紙おむつ・Clothing,Diaper
+金属・Metal
+陶器・Pottery
+食用油・Cooking Oil

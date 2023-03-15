@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'home.dart';
 
-// ignore: camel_case_types
+void main() {
+  runApp(analysis());
+}
+
 class analysis extends StatelessWidget {
-  const analysis({super.key});
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Analysis",
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.lightGreen,
-        ),
-        body: Center(
-          child: Column(),
-        ));
+    return MaterialApp(
+      title: 'Trash Recognition',
+      home: Home(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
