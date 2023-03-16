@@ -8,18 +8,20 @@ import 'main.dart';
 import 'auth_service.dart';
 import 'aboutpage.dart';
 
+import 'login.dart';
+
 void main() {
-  runApp(App());
+  runApp(Home());
 }
 
-class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<App> createState() => HomePage();
+  State<Home> createState() => HomePage();
 }
 
-class HomePage extends State<App> {
+class HomePage extends State<Home> {
   List<Ward> wards = tokyoWards;
   //* search function
   void searchWard(String query) {
@@ -109,7 +111,8 @@ class HomePage extends State<App> {
                                     children: [
                                       Container(
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           child: Image.asset(
                                             imgUrl,
                                             width: double.infinity,
@@ -122,7 +125,8 @@ class HomePage extends State<App> {
                                         width: double.infinity,
                                         height: 100,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           color: Colors.black.withOpacity(0.4),
                                         ),
                                       ),
@@ -241,8 +245,7 @@ class HomePage extends State<App> {
                             context.read<AuthService>().signOut();
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
+                              MaterialPageRoute(builder: (context) => Login()),
                             );
                           },
                         ),

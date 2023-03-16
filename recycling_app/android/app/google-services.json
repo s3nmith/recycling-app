@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1868975356",
+    "project_id": "signin-e1d29",
+    "storage_bucket": "signin-e1d29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1868975356:android:26df9797b341028a35db79",
+        "android_client_info": {
+          "package_name": "com.example.recycling_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1868975356-cpvhudk4otgek3bmt8oslmpjt9sca5fp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMYjvQMrNNU3suML04n6JGWkz3GJLHcVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1868975356-cpvhudk4otgek3bmt8oslmpjt9sca5fp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1868975356-5q89hmbs1ths8p9jvqdqjq369p1ek601.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.recyclingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

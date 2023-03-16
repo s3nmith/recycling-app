@@ -72,7 +72,7 @@ class OnboardingPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => App(),
+              builder: (context) => Home(),
               //test by replacing 'Login()' with 'HomePage()'
             ),
           );
