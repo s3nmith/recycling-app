@@ -3,21 +3,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recycling_app/aboutpage.dart';
+import 'package:recycling_app/about/aboutpage.dart';
 
 import 'auth_service.dart';
-import 'components/square_tile.dart';
-import 'homepage.dart';
+import '../wards/homepage.dart';
 
-class RegisterPage extends StatefulWidget {
-  final Function()? onTap;
-  const RegisterPage({super.key, required this.onTap});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterPage> createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -187,6 +185,23 @@ class _LoginPageState extends State<RegisterPage> {
                 SizedBox(
                   height: 40,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Not a member?',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                    const SizedBox(width: 4),
+                    const Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

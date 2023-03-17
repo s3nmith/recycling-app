@@ -3,11 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recycling_app/aboutpage.dart';
+import 'package:recycling_app/about/aboutpage.dart';
 
-import 'auth_service.dart';
-import 'homepage.dart';
-import 'login.dart';
+import 'sign-in/auth_service.dart';
+import 'wards/homepage.dart';
+import 'sign-in/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // async

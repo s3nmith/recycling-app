@@ -1,41 +1,71 @@
 {
   "project_info": {
-    "project_number": "1868975356",
-    "project_id": "signin-e1d29",
-    "storage_bucket": "signin-e1d29.appspot.com"
+    "project_number": "793342973385",
+    "project_id": "test-login-67686",
+    "storage_bucket": "test-login-67686.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1868975356:android:26df9797b341028a35db79",
+        "mobilesdk_app_id": "1:793342973385:android:4fa135ce8749403296c418",
         "android_client_info": {
-          "package_name": "com.example.recycling_app"
+          "package_name": "com.example.login"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1868975356-cpvhudk4otgek3bmt8oslmpjt9sca5fp.apps.googleusercontent.com",
+          "client_id": "793342973385-fk2aug1tu8uin2n4tciddqrtbk1oct5o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login",
+            "certificate_hash": "4f511829bb66f561205749fd636f0ca27a8ba784"
+          }
+        },
+        {
+          "client_id": "793342973385-tv302fd4kl33gcnrh146lir8dnlb3vr4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBMYjvQMrNNU3suML04n6JGWkz3GJLHcVs"
+          "current_key": "AIzaSyBeVN3aZQQiLeDLSko7I9egQVWu6cYFxyo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1868975356-cpvhudk4otgek3bmt8oslmpjt9sca5fp.apps.googleusercontent.com",
+              "client_id": "793342973385-1hs5124n3rarc3tuuv9peh0a9lam9fmv.apps.googleusercontent.com",
               "client_type": 3
-            },
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793342973385:android:01521a0c7323dfaf96c418",
+        "android_client_info": {
+          "package_name": "com.example.recycling_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793342973385-tv302fd4kl33gcnrh146lir8dnlb3vr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeVN3aZQQiLeDLSko7I9egQVWu6cYFxyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
             {
-              "client_id": "1868975356-5q89hmbs1ths8p9jvqdqjq369p1ek601.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.recyclingApp"
-              }
+              "client_id": "793342973385-1hs5124n3rarc3tuuv9peh0a9lam9fmv.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         }

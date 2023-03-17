@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'aboutpage.dart';
-import 'camera.dart';
+import '../about/aboutpage.dart';
+import '../camera/camera.dart';
 import 'wards.dart';
-import 'main.dart';
-import 'auth_service.dart';
-import 'aboutpage.dart';
+import '../main.dart';
+import '../sign-in/auth_service.dart';
+//import '../aboutpage.dart';
 
-import 'login.dart';
+import '../sign-in/login.dart';
 
 void main() {
   runApp(Home());
