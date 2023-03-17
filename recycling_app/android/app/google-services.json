@@ -51,6 +51,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "793342973385-qk49h2tsbrlgvko20d0vgq2oa47mil8e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycling_app",
+            "certificate_hash": "4f511829bb66f561205749fd636f0ca27a8ba784"
+          }
+        },
+        {
           "client_id": "793342973385-tv302fd4kl33gcnrh146lir8dnlb3vr4.apps.googleusercontent.com",
           "client_type": 3
         }

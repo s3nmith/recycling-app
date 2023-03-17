@@ -160,7 +160,7 @@ class HomePage extends State<Home> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                "assets/images/leaves.png",
+                                "assets/images/decorations/leaves.png",
                               ),
                             ),
                           ),

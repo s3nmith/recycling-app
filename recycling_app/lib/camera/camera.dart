@@ -79,7 +79,7 @@ class _Cam extends State<CameraScreen> {
                                     color: Colors.white,
                                     size: 40,
                                   ),
-                                  label: const Text('  Analyze',
+                                  label: const Text('               Analyze',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500)),
                                   style: ElevatedButton.styleFrom(
@@ -88,7 +88,8 @@ class _Cam extends State<CameraScreen> {
                                               BorderRadius.circular(10.0)),
                                       primary: Colors.blue,
                                       onPrimary: Colors.white,
-                                      textStyle: const TextStyle(fontSize: 18)),
+                                      textStyle: const TextStyle(fontSize: 18),
+                                      padding: EdgeInsets.only(right: 100)),
                                   onPressed: () {
                                     Navigator.push(
                                       context,
@@ -111,11 +112,11 @@ class _Cam extends State<CameraScreen> {
                                       color: Colors.white,
                                       size: 40,
                                     ),
-                                    label: const Text('  Retake',
+                                    label: const Text('                Retake',
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500)),
                                     style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.only(right: 50),
+                                        padding: EdgeInsets.only(right: 107),
                                         primary: Colors.green,
                                         onPrimary: Colors.white,
                                         //shadowColor: Colors.blue,
@@ -147,7 +148,7 @@ class _Cam extends State<CameraScreen> {
                                       textAlign: TextAlign.center,
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.only(right: 37),
+                                        padding: EdgeInsets.only(right: 39),
                                         primary: Colors.orange,
                                         onPrimary: Colors.white,
                                         //shadowColor: Colors.blue,
@@ -178,7 +179,7 @@ class _Cam extends State<CameraScreen> {
                             child: SizedBox(
                                 height: 175,
                                 child: Image.asset(
-                                    height: 175, 'assets/images/ume.png')),
+                                    height: 175, 'assets/images/decorations/ume.png')),
                           ),
                           SizedBox(height: 62),
                           SizedBox(

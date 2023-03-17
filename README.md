@@ -3,6 +3,10 @@ This is our team's project for the Solution Challenge 2023, it is an app. This a
 
 
 Some of the SDG's covered in our project:
+    GOAL 11: Sustainable Cities and Communities
+    GOAL 12: Responsible Consumption and Production
+    GOAL 14: Life Below Water
+    GOAL 15: Life on Land
 
 
 We believe that this project will help ease the transition into life in Japan for many people. This is due to the vast amount of students we have seen struggle with garbage sorting during their first month in Japan. This app can also help educate people on the importance of waste sorting.
