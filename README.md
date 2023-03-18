@@ -23,6 +23,23 @@ or
 
     flutter run --no-sound-null-safety  
 
+## Known Issues
 
+- Lexical or Preprocessor Issue (Xcode): 'vector' file not found. Parse Issue (Xcode): Could not build module 'tflite'
+
+Try making sure the pod file is up to date
+    
+    pod deintegrate, install, update, repo update
+
+If this doesn't resolve the issue:
+
+    Open ios/Runner.xcworkspace in Xcode, click Runner > Tagets > Runner > Build Settings, search Compile Sources As, change the value to Objective-C++
+    
+    
+- Parse Issue (Xcode): Use of '@import' when C++ modules are disabled, consider using -fmodules and -fcxx-modules
+
+Follow the error message and do the following
+
+    Open ios/Runner.xcworkspace in Xcode, click Runner > Tagets > Runner > Build Settings, search Other C++ Flags, add the compiler flag -fcxx-modules
 
 
