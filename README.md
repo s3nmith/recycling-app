@@ -35,6 +35,7 @@ If this doesn't resolve the issue:
 
     Open ios/Runner.xcworkspace in Xcode, click Runner > Tagets > Runner > Build Settings, search Compile Sources As, change the value to Objective-C++
     
+    
 - Parse Issue (Xcode): Use of '@import' when C++ modules are disabled, consider using -fmodules and -fcxx-modules
 
 Follow the error message and do the following
