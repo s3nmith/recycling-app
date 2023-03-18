@@ -1,0 +1,24 @@
+CD,DVD
+びん・Bottle
+ガラス・Glass
+カップ類・Plastic Cup
+ゴム、皮革製品・Rubber,Leather
+スプレー缶、カセットボンベ・Spray Can, Gas Canister
+プラスチック製品・Plastic Product
+ペットボトルキャップ・Plastic Cap
+ペットボトル・Plastic Bottle
+ライター・Lighter
+乾電池・Battery
+傘・Umbrella
+古紙として回収できない紙類・Non Recyclable Paper
+古紙・Waste Paper
+少量の木くず、葉・Twigs,Leaves
+生ごみ・Biodegradable Waste
+缶・Can
+蛍光管・Fluorescent light
+衣類・Clothing
+袋類、ラップ、フィルム・Plastic Bag, Wrap, Film
+金属類・Metal
+陶器・Pottery
+食品トレイ・Styrofoam Tray
+食用油・Cooking Oil
