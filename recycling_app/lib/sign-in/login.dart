@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void showErrorMessage(String message) {
+  void showMessage(String message) {
     showDialog(
       context: context,
       builder: (context) {
@@ -113,10 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                       email: emailController.text,
                       password: passwordController.text,
                       onSuccess: () {
-                        showErrorMessage("login successful");
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("login successful"),
-                        ));
+                        showMessage("login successful");
 
                         // Move to App
                         Navigator.pushReplacement(
@@ -128,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       onError: (err) {
                         // error
-                        showErrorMessage(err);
+                        showMessage(err);
                       },
                     );
                   },
