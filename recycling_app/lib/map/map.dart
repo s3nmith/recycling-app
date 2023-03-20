@@ -22,10 +22,14 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Your Closest Trash Can",
+          "Nearby Trash Cans",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.pinkAccent,
@@ -35,7 +39,7 @@ class MapPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset('assets/images/logos/logo.png'),
-          SizedBox(height: 15),
+          SizedBox(height: height * 0.0159),
           Align(
             alignment: Alignment.center,
             child: Text("Under Construction. Please wait a little while :)",

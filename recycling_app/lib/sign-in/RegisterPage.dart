@@ -40,6 +40,10 @@ class _LoginPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Consumer<AuthService>(
       builder: (context, authService, child) {
         final user = authService.currentUser();

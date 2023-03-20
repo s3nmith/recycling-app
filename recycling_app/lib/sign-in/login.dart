@@ -38,6 +38,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Consumer<AuthService>(
       builder: (context, authService, child) {
         final user = authService.currentUser();
@@ -71,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 32),
+                SizedBox(height: height * 32/932),
 
                 TextField(
                   controller: emailController,
@@ -84,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(hintText: "Password"),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: height * 10/932),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -99,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: height * 10/932),
 
                 ElevatedButton(
                   style: OutlinedButton.styleFrom(
@@ -134,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                 /// signup
 
                 SizedBox(
-                  height: 15,
+                  height: height * 15/932,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -164,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 SizedBox(
-                  height: 15,
+                  height: height * 15/932,
                 ),
 
                 ElevatedButton(
@@ -180,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 SizedBox(
-                  height: 40,
+                  height: height * 40/932,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -189,8 +193,8 @@ class _LoginPageState extends State<LoginPage> {
                       'Not a member?',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
-                    const SizedBox(width: 4),
-                    const Text(
+                    SizedBox(width: width * 4/430),
+                    Text(
                       'Register now',
                       style: TextStyle(
                         color: Colors.blue,

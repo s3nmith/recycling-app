@@ -37,6 +37,10 @@ class HomePage extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Builder(
@@ -181,7 +185,7 @@ class HomePage extends State<Home> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                SizedBox(height: height * 0.01717),
                                 //! Temporary place holder, change to user's name and email address later
                                 Text(
                                   "User",

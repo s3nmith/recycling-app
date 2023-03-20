@@ -89,6 +89,9 @@ class _HomeState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     //change up the camera aesthetics here
 
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
         //customise the app bar here please, it jus looks very default now
         appBar: AppBar(
@@ -130,7 +133,7 @@ class _HomeState extends State<CameraScreen> {
                                 )
                               : Column(
                                   children: [
-                                    SizedBox(height: 25),
+                                    SizedBox(height: height * 0.026824),
                                     Text(
                                       'The trash type is:',
                                       textAlign: TextAlign.center,
@@ -140,7 +143,7 @@ class _HomeState extends State<CameraScreen> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    SizedBox(height: 10),
+                                    SizedBox(height: height * 0.01073),
                                     Text(
                                       '${_output?[0]['label'] ?? ''}',
                                       textAlign: TextAlign.center,
@@ -150,7 +153,7 @@ class _HomeState extends State<CameraScreen> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    SizedBox(height: 10),
+                                    SizedBox(height: height * 0.01073),
                                     RichText(
                                       text: TextSpan(
                                         children: [
@@ -188,11 +191,11 @@ class _HomeState extends State<CameraScreen> {
                 children: [
                   imagePicked == false
                       ? Column(children: [
-                        SizedBox(height: 230),
+                        SizedBox(height: height * 0.24678),
                           Align(
                             alignment: Alignment.topRight,
                             child: SizedBox(
-                                height: 175,
+                                height: height * 0.18777,
                                 child: Image.asset(
                                     'assets/images/decorations/ume.png')),
                           ),
@@ -203,11 +206,11 @@ class _HomeState extends State<CameraScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 10)
+                          SizedBox(height: height * 0.01073)
                         ])
                       : Column(
                           children: [
-                            SizedBox(height: 15),
+                            SizedBox(height: height * 15/932),
                             Padding(
                               padding: const EdgeInsets.only(
                                   top: 0, bottom: 5, left: 8.0, right: 8.0),
@@ -221,8 +224,8 @@ class _HomeState extends State<CameraScreen> {
                               padding:
                                   const EdgeInsets.only(top: 10, bottom: 10.0),
                               child: SizedBox(
-                                height: 55,
-                                width: 380,
+                                height: height * 55/932,
+                                width: width * 380/430,
                                 child: ElevatedButton.icon(
                                   icon: const Icon(
                                     Icons.analytics_outlined,
@@ -255,8 +258,8 @@ class _HomeState extends State<CameraScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 55,
-                          width: 380,
+                          height: height * 55/932,
+                          width: width * 380/430,
                           child: ElevatedButton.icon(
                             icon: const Icon(
                               Icons.camera_alt_outlined,
@@ -279,10 +282,10 @@ class _HomeState extends State<CameraScreen> {
                             },
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: height * 10/932),
                         SizedBox(
-                          height: 55,
-                          width: 380,
+                          height: height * 55/932,
+                          width: width * 380/430,
                           child: ElevatedButton.icon(
                             icon: const Icon(
                               Icons.photo_album_outlined,
