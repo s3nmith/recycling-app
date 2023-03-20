@@ -8,8 +8,6 @@ class Ward {
   });
 }
 
-//* The list of wards were moved here
-//! Want to move the images into the assets folder instead of internet
 const tokyoWards = [
   Ward(
       category: '足立区 / Adaichi',
@@ -71,7 +69,7 @@ const tokyoWards = [
         'assets/images/wards/minato.png',
   ),
   Ward(
-    category: ' 中野区 / Nakano',
+    category: '中野区 / Nakano',
     imgUrl:
         'assets/images/wards/nakano.png',
   ),
@@ -104,5 +102,25 @@ const tokyoWards = [
     category: '新宿区 / Shinjuku',
     imgUrl:
         'assets/images/wards/shinjuku.png',
+  ),
+  Ward(
+    category: '杉並区 / Suginami',
+    imgUrl: 
+        'assets/images/wards/suginami.png'
+  ),
+  Ward(
+    category: '墨田区 / Sumida',
+    imgUrl: 
+        'assets/images/wards/sumida.png'
+  ),
+  Ward(
+    category: '台東区 / Taito',
+    imgUrl: 
+        'assets/images/wards/taito.png'
+  ),
+  Ward(
+    category: '豊島区 / Toshima',
+    imgUrl: 
+        'assets/images/wards/toshima.png'
   ),
 ];

@@ -95,7 +95,6 @@ class HomePage extends State<Home> {
                           itemCount: wards.length,
                           itemBuilder: (context, index) {
                             final ward = wards[index];
-                            ;
                             String category = ward.category;
                             String imgUrl = ward.imgUrl;
 
@@ -142,7 +141,8 @@ class HomePage extends State<Home> {
                                 ),
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => CameraScreen()));
+                                      builder: (context) =>
+                                          CameraScreen(category: category)));
                                 });
                           },
                         ),
