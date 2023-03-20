@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
+import '../map/map.dart';
 
 class CameraScreen extends StatefulWidget {
   final String category;
@@ -95,6 +96,21 @@ class _HomeState extends State<CameraScreen> {
             "Choose Your Trash Picture",
             style: TextStyle(color: Colors.white),
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.map,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MapPage())
+                );
+              }   
+            )    
+          ],
           backgroundColor: Colors.lightGreen,
         ),
         body: Center(
@@ -235,8 +251,8 @@ class _HomeState extends State<CameraScreen> {
                         ),
                   Column(children: [
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
                           height: 55,
