@@ -2,11 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:recycling_app/about/aboutpage.dart';
+import 'package:recycling_app/components/square_tile.dart';
 
 import 'auth_service.dart';
 import '../wards/homepage.dart';
+import 'google_signin.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -171,16 +175,43 @@ class _LoginPageState extends State<LoginPage> {
                   height: height * 15/932,
                 ),
 
-                ElevatedButton(
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 115,
                   ),
-                  child: Text("Google",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
-                  onPressed: () {},
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                    ),
+                    icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),
+                    label: Text(" Google",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)),
+                    onPressed: () {
+                      Google().signInWithGoogle();
+                      authService.signIn(
+                        email: emailController.text,
+                        password: passwordController.text,
+                        onSuccess: () {
+                          showMessage("login successful");
+
+                          // Move to App
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ),
+                          );
+                        },
+                        onError: (err) {
+                          // error
+                          showMessage(err);
+                        },
+                      );
+                    },
+                  ),
                 ),
 
                 SizedBox(
