@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MapPage extends StatelessWidget {
-  const MapPage({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,10 @@ class MapPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Nearby Trash Cans",
+          "Settings",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.blueGrey,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

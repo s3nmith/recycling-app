@@ -41,8 +41,8 @@ class _LoginPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
 
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height / 932;
+    double width = MediaQuery.of(context).size.width / 430;
 
     return Consumer<AuthService>(
       builder: (context, authService, child) {
@@ -77,7 +77,7 @@ class _LoginPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 32),
+                SizedBox(height: height * 32),
 
                 TextField(
                   controller: emailController,
@@ -90,7 +90,7 @@ class _LoginPageState extends State<RegisterPage> {
                   decoration: InputDecoration(hintText: "Password"),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: height * 10),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -105,7 +105,7 @@ class _LoginPageState extends State<RegisterPage> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: height * 10),
 
                 ElevatedButton(
                   style: OutlinedButton.styleFrom(
@@ -143,7 +143,7 @@ class _LoginPageState extends State<RegisterPage> {
                 /// signup
 
                 SizedBox(
-                  height: 15,
+                  height: height * 15,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -173,7 +173,7 @@ class _LoginPageState extends State<RegisterPage> {
                 ),
 
                 SizedBox(
-                  height: 15,
+                  height: height * 15,
                 ),
 
                 ElevatedButton(
@@ -189,7 +189,7 @@ class _LoginPageState extends State<RegisterPage> {
                 ),
 
                 SizedBox(
-                  height: 40,
+                  height: height * 40,
                 ),
               ],
             ),

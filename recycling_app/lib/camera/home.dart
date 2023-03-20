@@ -89,8 +89,9 @@ class _HomeState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     //change up the camera aesthetics here
 
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    //iPhone 14 Pro Max Viewport Size: 430px × 932px. Reason behind why the height and width is formatted the way it is.
+    double height = MediaQuery.of(context).size.height / 932;
+    double width = MediaQuery.of(context).size.width / 430;
 
     return Scaffold(
         //customise the app bar here please, it jus looks very default now
@@ -133,41 +134,41 @@ class _HomeState extends State<CameraScreen> {
                                 )
                               : Column(
                                   children: [
-                                    SizedBox(height: height * 0.026824),
+                                    SizedBox(height: height * 25),
                                     Text(
                                       'The trash type is:',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        fontSize: height * 18,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    SizedBox(height: height * 0.01073),
+                                    SizedBox(height: height * 10),
                                     Text(
                                       '${_output?[0]['label'] ?? ''}',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.blueAccent,
-                                        fontSize: 18,
+                                        fontSize: height * 18,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    SizedBox(height: height * 0.01073),
+                                    SizedBox(height: height * 10),
                                     RichText(
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
                                             text: 'Trash category in "${widget.category}" is ',
                                             style: TextStyle(
-                                              fontSize: 16,
+                                              fontSize: height * 16,
                                               color: Colors.black
                                             ),
                                           ),
                                           TextSpan(
                                             text: "@Kohta Insert your code here",
                                             style: TextStyle(
-                                              fontSize: 16,
+                                              fontSize: height * 16,
                                               color: Colors.redAccent,
                                               fontWeight: FontWeight.bold,
                                             )
@@ -191,46 +192,46 @@ class _HomeState extends State<CameraScreen> {
                 children: [
                   imagePicked == false
                       ? Column(children: [
-                        SizedBox(height: height * 0.24678),
+                        SizedBox(height: height * 230),
                           Align(
                             alignment: Alignment.topRight,
                             child: SizedBox(
-                                height: height * 0.18777,
+                                height: height * 175,
                                 child: Image.asset(
                                     'assets/images/decorations/ume.png')),
                           ),
                           Text(
                             'Please select an image to proceed.',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: height * 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: height * 0.01073)
+                          SizedBox(height: height * 10)
                         ])
                       : Column(
                           children: [
-                            SizedBox(height: height * 15/932),
+                            SizedBox(height: height * 15),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 0, bottom: 5, left: 8.0, right: 8.0),
+                              padding: EdgeInsets.only(
+                                  top: 0, bottom: height * 5, left: width * 8, right: width * 8),
                               child: Image.file(
                                 _image,
-                                height: 428,
-                                width: 321,
+                                height: height * 428,
+                                width: width * 321,
                               ),
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(top: 10, bottom: 10.0),
+                                   EdgeInsets.only(top: height * 10, bottom: height * 10),
                               child: SizedBox(
-                                height: height * 55/932,
-                                width: width * 380/430,
+                                height: height * 55,
+                                width: width * 380,
                                 child: ElevatedButton.icon(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.analytics_outlined,
                                     color: Colors.white,
-                                    size: 40,
+                                    size: height * 40,
                                   ),
                                   label: const Text('               Analyze',
                                       style: TextStyle(
@@ -241,8 +242,8 @@ class _HomeState extends State<CameraScreen> {
                                               BorderRadius.circular(10.0)),
                                       primary: Colors.blue,
                                       onPrimary: Colors.white,
-                                      textStyle: const TextStyle(fontSize: 18),
-                                      padding: EdgeInsets.only(right: 100)),
+                                      textStyle: TextStyle(fontSize: height * 18),
+                                      padding: EdgeInsets.only(right: width * 100)),
                                   onPressed: () {
                                     analyzing = true;
                                     classifyButtonPressed();
@@ -258,39 +259,39 @@ class _HomeState extends State<CameraScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: height * 55/932,
-                          width: width * 380/430,
+                          height: height * 55,
+                          width: width * 380,
                           child: ElevatedButton.icon(
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.camera_alt_outlined,
                               color: Colors.white,
-                              size: 40,
+                              size: height * 40,
                             ),
-                            label: const Text('           Take Picture',
+                            label: Text('           Take Picture',
                                 style: TextStyle(fontWeight: FontWeight.w500)),
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.only(right: 81),
+                                padding: EdgeInsets.only(right: width * 81),
                                 primary: Colors.green,
                                 onPrimary: Colors.white,
                                 //shadowColor: Colors.blue,
                                 //elevation: 2,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0)),
-                                textStyle: const TextStyle(fontSize: 18)),
+                                textStyle: TextStyle(fontSize: height * 18)),
                             onPressed: () {
                               pickImage(ImageSource.camera);
                             },
                           ),
                         ),
-                        SizedBox(height: height * 10/932),
+                        SizedBox(height: height * 10),
                         SizedBox(
-                          height: height * 55/932,
-                          width: width * 380/430,
+                          height: height * 55,
+                          width: width * 380,
                           child: ElevatedButton.icon(
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.photo_album_outlined,
                               color: Colors.white,
-                              size: 40,
+                              size: height * 40,
                             ),
                             label: const Text(
                               '      Select from Gallery',
@@ -298,14 +299,14 @@ class _HomeState extends State<CameraScreen> {
                               textAlign: TextAlign.center,
                             ),
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.only(right: 47),
+                                padding: EdgeInsets.only(right: width * 47),
                                 primary: Colors.orange,
                                 onPrimary: Colors.white,
                                 //shadowColor: Colors.blue,
                                 //elevation: 2,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0)),
-                                textStyle: const TextStyle(fontSize: 18)),
+                                textStyle: TextStyle(fontSize: height * 18)),
                             onPressed: () {
                               pickImage(ImageSource.gallery);
                             },

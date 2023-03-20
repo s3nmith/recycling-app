@@ -6,6 +6,8 @@ import '../about/aboutpage.dart';
 import 'wards.dart';
 import '../main.dart';
 import '../sign-in/auth_service.dart';
+import '../history/history.dart';
+import '../settings/settings.dart';
 //import '../aboutpage.dart';
 
 import '../sign-in/login.dart';
@@ -38,8 +40,8 @@ class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height / 932;
+    double width = MediaQuery.of(context).size.width / 430;
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -219,7 +221,13 @@ class HomePage extends State<Home> {
                               Icons.arrow_forward_ios,
                               color: Colors.black,
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HistoryPage())
+                              );
+                            },
                           ),
                         ),
 
@@ -233,7 +241,13 @@ class HomePage extends State<Home> {
                             Icons.arrow_forward_ios,
                             color: Colors.black,
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SettingsPage())
+                            );
+                          },
                         ),
 
                         //* Logout tab
