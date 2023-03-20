@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:recycling_app/camera/home.dart';
 import '../about/aboutpage.dart';
-import '../camera/camera.dart';
 import 'wards.dart';
 import '../main.dart';
 import '../sign-in/auth_service.dart';
