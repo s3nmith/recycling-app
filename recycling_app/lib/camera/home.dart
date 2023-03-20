@@ -99,7 +99,7 @@ class _HomeState extends State<CameraScreen> {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
@@ -114,6 +114,7 @@ class _HomeState extends State<CameraScreen> {
                                 )
                               : Column(
                                   children: [
+                                    SizedBox(height: 25),
                                     Text(
                                       'The trash type is:',
                                       textAlign: TextAlign.center,
@@ -128,7 +129,7 @@ class _HomeState extends State<CameraScreen> {
                                       '${_output?[0]['label'] ?? ''}',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.blueAccent,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w400,
                                       ),
@@ -156,6 +157,7 @@ class _HomeState extends State<CameraScreen> {
                 children: [
                   imagePicked == false
                       ? Column(children: [
+                        SizedBox(height: 230),
                           Align(
                             alignment: Alignment.topRight,
                             child: SizedBox(
@@ -170,16 +172,18 @@ class _HomeState extends State<CameraScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          SizedBox(height: 10)
                         ])
                       : Column(
                           children: [
+                            SizedBox(height: 15),
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 5, bottom: 5, left: 8.0, right: 8.0),
+                                  top: 0, bottom: 5, left: 8.0, right: 8.0),
                               child: Image.file(
                                 _image,
-                                height: 336,
-                                width: 252,
+                                height: 428,
+                                width: 321,
                               ),
                             ),
                             Padding(
@@ -217,6 +221,7 @@ class _HomeState extends State<CameraScreen> {
                   Column(children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         SizedBox(
                           height: 55,
@@ -227,10 +232,10 @@ class _HomeState extends State<CameraScreen> {
                               color: Colors.white,
                               size: 40,
                             ),
-                            label: const Text('            Take Picture',
+                            label: const Text('           Take Picture',
                                 style: TextStyle(fontWeight: FontWeight.w500)),
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.only(right: 75),
+                                padding: EdgeInsets.only(right: 81),
                                 primary: Colors.green,
                                 onPrimary: Colors.white,
                                 //shadowColor: Colors.blue,
@@ -254,12 +259,12 @@ class _HomeState extends State<CameraScreen> {
                               size: 40,
                             ),
                             label: const Text(
-                              '  Select from Gallery',
+                              '      Select from Gallery',
                               style: TextStyle(fontWeight: FontWeight.w500),
                               textAlign: TextAlign.center,
                             ),
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.only(right: 39),
+                                padding: EdgeInsets.only(right: 47),
                                 primary: Colors.orange,
                                 onPrimary: Colors.white,
                                 //shadowColor: Colors.blue,
