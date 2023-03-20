@@ -1,9 +1,12 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CameraScreen extends StatefulWidget {
+  final String category;
+  const CameraScreen({required this.category});
   @override
   _HomeState createState() => _HomeState();
 }
@@ -132,7 +135,7 @@ class _HomeState extends State<CameraScreen> {
                                     ),
                                     SizedBox(height: 10),
                                     Text(
-                                      'Trash category in "" is ""',
+                                      'Trash category in "${widget.category}" is ""',
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
