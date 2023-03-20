@@ -135,10 +135,25 @@ class _HomeState extends State<CameraScreen> {
                                       ),
                                     ),
                                     SizedBox(height: 10),
-                                    Text(
-                                      'Trash category in "${widget.category}" is ""',
-                                      style: TextStyle(
-                                        fontSize: 16,
+                                    RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'Trash category in "${widget.category}" is ',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.black
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: "@Kohta Insert your code here",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.redAccent,
+                                              fontWeight: FontWeight.bold,
+                                            )
+                                          )
+                                        ],
                                       ),
                                     ),
                                   ],
