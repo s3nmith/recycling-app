@@ -111,16 +111,16 @@ const tokyoWards = [
   Ward(
     category: '墨田区 / Sumida',
     imgUrl: 
-        'assets/images/wards/suginami.png'
+        'assets/images/wards/sumida.png'
   ),
   Ward(
     category: '台東区 / Taito',
     imgUrl: 
-        'assets/images/wards/suginami.png'
+        'assets/images/wards/taito.png'
   ),
   Ward(
     category: '豊島区 / Toshima',
     imgUrl: 
-        'assets/images/wards/suginami.png'
+        'assets/images/wards/toshima.png'
   ),
 ];
