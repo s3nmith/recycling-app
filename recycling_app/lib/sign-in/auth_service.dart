@@ -74,4 +74,6 @@ class AuthService extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     notifyListeners(); // login status change notification
   }
+
+  signInWithGoogle() {}
 }
