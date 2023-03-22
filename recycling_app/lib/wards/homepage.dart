@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ void main() {
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => HomePage();
@@ -25,6 +26,8 @@ class Home extends StatefulWidget {
 
 class HomePage extends State<Home> {
   List<Ward> wards = tokyoWards;
+
+  final user = FirebaseAuth.instance.currentUser!;
   //* search function
   void searchWard(String query) {
     final suggestions = tokyoWards.where((ward) {
@@ -39,7 +42,6 @@ class HomePage extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height / 932;
     double width = MediaQuery.of(context).size.width / 430;
 
@@ -163,13 +165,6 @@ class HomePage extends State<Home> {
                         // Drawer
                         DrawerHeader(
                           margin: const EdgeInsets.all(0),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/decorations/leaves.png",
-                              ),
-                            ),
-                          ),
                           child: SizedBox(
                             width: double.infinity,
                             child: Column(
@@ -183,21 +178,15 @@ class HomePage extends State<Home> {
                                     /// 이미지
                                     child: Image.network(
                                       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-                                      width: 62,
+                                      width: 100,
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: height * 0.01717),
+                                SizedBox(height: 20),
                                 //! Temporary place holder, change to user's name and email address later
+
                                 Text(
-                                  "User",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  "a@a.com",
+                                  user.email!,
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
@@ -223,10 +212,9 @@ class HomePage extends State<Home> {
                             ),
                             onTap: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HistoryPage())
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HistoryPage()));
                             },
                           ),
                         ),
@@ -243,10 +231,9 @@ class HomePage extends State<Home> {
                           ),
                           onTap: () {
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SettingsPage())
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SettingsPage()));
                           },
                         ),
 

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:recycling_app/about/aboutpage.dart';
 
 import 'auth_service.dart';
-import '../components/square_tile.dart';
 import '../wards/homepage.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -40,7 +39,6 @@ class _LoginPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height / 932;
     double width = MediaQuery.of(context).size.width / 430;
 
