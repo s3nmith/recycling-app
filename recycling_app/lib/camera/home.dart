@@ -1,9 +1,11 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
 import '../map/map.dart';
+import 'package:csv/csv.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:unorm_dart/unorm_dart.dart' as unorm;
 
 class CameraScreen extends StatefulWidget {
   final String category;
@@ -15,6 +17,7 @@ class CameraScreen extends StatefulWidget {
 class _HomeState extends State<CameraScreen> {
   File _image = File('');
   List<dynamic>? _output;
+  String _data = '';
   bool imagePicked = false;
   bool analyzing = false;
   bool modelRun = false;
@@ -81,7 +84,36 @@ class _HomeState extends State<CameraScreen> {
     classifyImage(_image).then((value) {
       setState(() {
         _output = value;
+        _getData();
       });
+    });
+  }
+
+  Future<String> getData(String ward, String trashType) async {
+    final csvString =
+        await rootBundle.loadString('assets/trash_categories.csv');
+    final csvData = CsvToListConverter().convert(csvString);
+
+    // Find the column index for the provided ward
+    final wardIndex = csvData[0].indexOf(ward);
+
+    // Find the row with the provided trash type
+    final trashRow = csvData.firstWhere((row) => row[0] == trashType);
+
+    // Get the data for the ward and trash type
+    final data = trashRow[wardIndex];
+
+    return data;
+  }
+
+  Future<void> _getData() async {
+    dynamic element = _output?[0]['label'];
+    String stringElement = element.toString();
+    String normalizedString = unorm.nfc(
+        stringElement); // Normalize string to make sure Japanese text have same encoding
+    final data = await getData(widget.category, normalizedString);
+    setState(() {
+      _data = data;
     });
   }
 
@@ -94,7 +126,7 @@ class _HomeState extends State<CameraScreen> {
     double width = MediaQuery.of(context).size.width / 430;
 
     return Scaffold(
-        //customise the app bar here please, it jus looks very default now
+        //customise the app bar
         appBar: AppBar(
           title: const Text(
             "Choose Your Trash Picture",
@@ -102,18 +134,14 @@ class _HomeState extends State<CameraScreen> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(
-                Icons.map,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MapPage())
-                );
-              }   
-            )    
+                icon: Icon(
+                  Icons.map,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MapPage()));
+                })
           ],
           backgroundColor: Colors.lightGreen,
         ),
@@ -159,20 +187,19 @@ class _HomeState extends State<CameraScreen> {
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
-                                            text: 'Trash category in "${widget.category}" is ',
+                                            text:
+                                                'Trash category in "${widget.category}" is ',
                                             style: TextStyle(
-                                              fontSize: height * 16,
-                                              color: Colors.black
-                                            ),
+                                                fontSize: height * 16,
+                                                color: Colors.black),
                                           ),
                                           TextSpan(
-                                            text: "@Kohta Insert your code here",
-                                            style: TextStyle(
-                                              fontSize: height * 16,
-                                              color: Colors.redAccent,
-                                              fontWeight: FontWeight.bold,
-                                            )
-                                          )
+                                              text: _data,
+                                              style: TextStyle(
+                                                fontSize: height * 16,
+                                                color: Colors.redAccent,
+                                                fontWeight: FontWeight.bold,
+                                              ))
                                         ],
                                       ),
                                     ),
@@ -192,7 +219,7 @@ class _HomeState extends State<CameraScreen> {
                 children: [
                   imagePicked == false
                       ? Column(children: [
-                        SizedBox(height: height * 230),
+                          SizedBox(height: height * 230),
                           Align(
                             alignment: Alignment.topRight,
                             child: SizedBox(
@@ -214,7 +241,10 @@ class _HomeState extends State<CameraScreen> {
                             SizedBox(height: height * 15),
                             Padding(
                               padding: EdgeInsets.only(
-                                  top: 0, bottom: height * 5, left: width * 8, right: width * 8),
+                                  top: 0,
+                                  bottom: height * 5,
+                                  left: width * 8,
+                                  right: width * 8),
                               child: Image.file(
                                 _image,
                                 height: height * 428,
@@ -222,8 +252,8 @@ class _HomeState extends State<CameraScreen> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                   EdgeInsets.only(top: height * 10, bottom: height * 10),
+                              padding: EdgeInsets.only(
+                                  top: height * 10, bottom: height * 10),
                               child: SizedBox(
                                 height: height * 55,
                                 width: width * 380,
@@ -242,8 +272,10 @@ class _HomeState extends State<CameraScreen> {
                                               BorderRadius.circular(10.0)),
                                       primary: Colors.blue,
                                       onPrimary: Colors.white,
-                                      textStyle: TextStyle(fontSize: height * 18),
-                                      padding: EdgeInsets.only(right: width * 100)),
+                                      textStyle:
+                                          TextStyle(fontSize: height * 18),
+                                      padding:
+                                          EdgeInsets.only(right: width * 100)),
                                   onPressed: () {
                                     analyzing = true;
                                     classifyButtonPressed();
