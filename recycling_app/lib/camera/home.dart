@@ -129,7 +129,7 @@ class _HomeState extends State<CameraScreen> {
         //customise the app bar
         appBar: AppBar(
           title: const Text(
-            "Choose Your Trash Picture",
+            "Analysis Screen",
             style: TextStyle(color: Colors.white),
           ),
           actions: <Widget>[
@@ -183,26 +183,19 @@ class _HomeState extends State<CameraScreen> {
                                       ),
                                     ),
                                     SizedBox(height: height * 10),
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Trash category in "${widget.category}" is ',
-                                            style: TextStyle(
-                                                fontSize: height * 16,
-                                                color: Colors.black),
-                                          ),
-                                          TextSpan(
-                                              text: _data,
-                                              style: TextStyle(
-                                                fontSize: height * 16,
-                                                color: Colors.redAccent,
-                                                fontWeight: FontWeight.bold,
-                                              ))
-                                        ],
-                                      ),
-                                    ),
+                                    Text(
+                                        'Trash category in ${widget.category} is ',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: height * 16,
+                                            color: Colors.black)),
+                                    SizedBox(height: height * 10),
+                                    Text(_data,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: height * 18,
+                                            color: Colors.redAccent,
+                                            fontWeight: FontWeight.bold)),
                                   ],
                                 )
                         ])
