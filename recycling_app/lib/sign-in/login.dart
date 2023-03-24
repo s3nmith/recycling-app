@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:recycling_app/about/aboutpage.dart';
-import 'package:recycling_app/components/square_tile.dart';
 
 import 'auth_service.dart';
 import '../wards/homepage.dart';
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void showMessage(String message) {
+  void signUserIn(String message) async {
     showDialog(
       context: context,
       builder: (context) {
@@ -38,11 +38,14 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
+    //await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //email: emailController.text,
+    //password: passwordController.text,
+    //);
   }
 
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height / 932;
     double width = MediaQuery.of(context).size.width / 430;
 
@@ -51,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
         final user = authService.currentUser();
         return Scaffold(
           appBar: AppBar(
-            title: Text("Recycling App"),
+            title: Text("Gaijin-Recycling"),
             titleTextStyle: TextStyle(
               color: Colors.black,
               fontSize: 25,
@@ -68,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Image.asset(
                     'assets/images/logos/logo.png',
-                    height: 200,
+                    height: 230,
                   ),
                 ),
                 Center(
@@ -92,22 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(hintText: "Password"),
                 ),
 
-                SizedBox(height: height * 10),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: height * 10),
+                SizedBox(height: height * 20),
 
                 ElevatedButton(
                   style: OutlinedButton.styleFrom(
@@ -121,21 +109,33 @@ class _LoginPageState extends State<LoginPage> {
                       email: emailController.text,
                       password: passwordController.text,
                       onSuccess: () {
-                        showMessage("login successful");
-
-                        // Move to App
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),
-                        );
+                        signUserIn("SignIn Successful");
                       },
                       onError: (err) {
-                        // error
-                        showMessage(err);
+                        signUserIn(err);
                       },
                     );
+                  },
+                ),
+                ElevatedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                  ),
+                  child: Text("Sign Up",
+                      style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500)),
+                  onPressed: () {
+                    authService.signUp(
+                        email: emailController.text,
+                        password: passwordController.text,
+                        onSuccess: () {
+                          signUserIn("SignUp Successful");
+                        },
+                        onError: (err) {
+                          signUserIn(err);
+                        });
                   },
                 ),
 
@@ -155,7 +155,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 15.0),
                         child: Text(
                           'Or continue with',
                           style: TextStyle(color: Colors.grey[700]),
@@ -171,10 +172,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(
-                  height: height * 15,
-                ),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 115,
@@ -183,57 +180,21 @@ class _LoginPageState extends State<LoginPage> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
                     ),
-                    icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),
+                    icon: Image.asset(
+                      "assets/images/logos/google.png",
+                      height: 25,
+                      width: 25,
+                    ),
                     label: Text(" Google",
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
+                          color: Colors.black,
+                          fontSize: 15,
+                        )),
                     onPressed: () {
                       Google().signInWithGoogle();
-                      authService.signIn(
-                        email: emailController.text,
-                        password: passwordController.text,
-                        onSuccess: () {
-                          showMessage("login successful");
-
-                          // Move to App
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Home(),
-                            ),
-                          );
-                        },
-                        onError: (err) {
-                          // error
-                          showMessage(err);
-                        },
-                      );
                     },
                   ),
                 ),
-
-                SizedBox(
-                  height: height * 40,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Not a member?',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    SizedBox(width: width * 4),
-                    Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
           ),

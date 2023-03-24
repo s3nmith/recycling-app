@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recycling_app/about/aboutpage.dart';
+import 'package:recycling_app/sign-in/auth_page.dart';
 
 import 'sign-in/auth_service.dart';
 import 'wards/homepage.dart';
@@ -27,10 +28,9 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User? user = context.read<AuthService>().currentUser();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: user == null ? LoginPage() : Home(),
+      home: AuthPage(),
     );
   }
 }
