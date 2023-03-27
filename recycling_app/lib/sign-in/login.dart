@@ -23,6 +23,19 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  void loading() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.lightGreen,
+              strokeWidth: 7,
+            ),
+          );
+        });
+  }
+
   void signUserIn(String message) async {
     showDialog(
       context: context,
@@ -38,10 +51,6 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
-    //await FirebaseAuth.instance.signInWithEmailAndPassword(
-    //email: emailController.text,
-    //password: passwordController.text,
-    //);
   }
 
   @override
@@ -105,13 +114,16 @@ class _LoginPageState extends State<LoginPage> {
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   onPressed: () {
+                    loading();
                     authService.signIn(
                       email: emailController.text,
                       password: passwordController.text,
                       onSuccess: () {
+                        Navigator.pop(context);
                         signUserIn("SignIn Successful");
                       },
                       onError: (err) {
+                        Navigator.pop(context);
                         signUserIn(err);
                       },
                     );
@@ -127,13 +139,16 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.black,
                           fontWeight: FontWeight.w500)),
                   onPressed: () {
+                    loading();
                     authService.signUp(
                         email: emailController.text,
                         password: passwordController.text,
                         onSuccess: () {
+                          Navigator.pop(context);
                           signUserIn("SignUp Successful");
                         },
                         onError: (err) {
+                          Navigator.pop(context);
                           signUserIn(err);
                         });
                   },

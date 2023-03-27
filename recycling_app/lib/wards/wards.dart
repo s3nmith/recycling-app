@@ -12,6 +12,7 @@ const tokyoWards = [
   Ward(
       category: '足立区 / Adachi', //ward type
       imgUrl: 'assets/images/wards/adachi.png'), //name of image
+
   Ward(
     category: '荒川区 / Arakawa',
     imgUrl: 'assets/images/wards/arakawa.png',

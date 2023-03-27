@@ -9,7 +9,6 @@ import '../main.dart';
 import '../sign-in/auth_service.dart';
 import '../history/history.dart';
 import '../settings/settings.dart';
-//import '../aboutpage.dart';
 
 import '../sign-in/login.dart';
 
