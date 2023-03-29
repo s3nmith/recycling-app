@@ -65,14 +65,12 @@ class OnboardingPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Image.asset('assets/images/SDGs/goal11.png', width: 100),
-                  Image.asset('assets/images/SDGs/goal12.png', width: 100),
-                  Image.asset('assets/images/SDGs/goal13.png', width: 100)])),
+                  Image.asset('assets/images/SDGs/goal12.png', width: 100)])),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset('assets/images/SDGs/goal14.png', width: 100),
-                SizedBox(width: 50),
-                Image.asset('assets/images/SDGs/goal15.png', width: 100)]),
+                Image.asset('assets/images/SDGs/goal13.png', width: 100),
+                Image.asset('assets/images/SDGs/goal16.png', width: 100)]),
             SizedBox(height: 15)
           ]
         ),
