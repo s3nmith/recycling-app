@@ -34,7 +34,7 @@ class _HomeState extends State<CameraScreen> {
 
   @override
   void dispose() {
-    //dis function disposes and clears the memory
+    //dispose function disposes and clears the memory
     super.dispose();
     Tflite.close();
   }
@@ -120,7 +120,6 @@ class _HomeState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     //change up the camera aesthetics here
-
     //iPhone 14 Pro Max Viewport Size: 430px × 932px. Reason behind why the height and width is formatted the way it is.
     double height = MediaQuery.of(context).size.height / 932;
     double width = MediaQuery.of(context).size.width / 430;
