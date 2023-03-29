@@ -13,7 +13,7 @@ We believe that this project will help ease the transition into life in Japan fo
 
 ## Running the program
 
-After downloading this repository as a zip or cloning it. Open it using Visual Studio Code or Android Studio. Make sure you have a working Android Emulator or IOS Emulator.
+After downloading this repository as a zip or cloning it. Open it using Visual Studio Code. Make sure you have a working IOS Emulator.
 
 Run the following command
 
