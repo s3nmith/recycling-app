@@ -10,6 +10,7 @@ Some of the SDG's covered in our project:
 
 
 We believe that this project will help ease the transition into life in Japan for many people. This is due to the vast amount of students we have seen struggle with garbage sorting during their first month in Japan. This app can also help educate people on the importance of waste sorting.
+Link to the map repository: 
 
 ## Running the program
 
