@@ -127,22 +127,23 @@ class _HomeState extends State<CameraScreen> {
     return Scaffold(
         //customise the app bar
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           title: const Text(
             "Analysis Screen",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           ),
           actions: <Widget>[
             IconButton(
                 icon: Icon(
                   Icons.map,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MapPage()));
                 })
           ],
-          backgroundColor: Colors.lightGreen,
+          backgroundColor: Colors.white,
         ),
         body: Center(
           child: Column(
@@ -211,14 +212,7 @@ class _HomeState extends State<CameraScreen> {
                 children: [
                   imagePicked == false
                       ? Column(children: [
-                          SizedBox(height: height * 230),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: SizedBox(
-                                height: height * 175,
-                                child: Image.asset(
-                                    'assets/images/decorations/ume.png')),
-                          ),
+                          SizedBox(height: height * 500),
                           Text(
                             'Please select an image to proceed.',
                             style: TextStyle(
@@ -262,7 +256,7 @@ class _HomeState extends State<CameraScreen> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10.0)),
-                                      primary: Colors.blue,
+                                      primary: Color(0xff4c4040),
                                       onPrimary: Colors.white,
                                       textStyle:
                                           TextStyle(fontSize: height * 18),
@@ -295,7 +289,7 @@ class _HomeState extends State<CameraScreen> {
                                 style: TextStyle(fontWeight: FontWeight.w500)),
                             style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.only(right: width * 81),
-                                primary: Colors.green,
+                                primary: Color(0xff554343),
                                 onPrimary: Colors.white,
                                 //shadowColor: Colors.blue,
                                 //elevation: 2,
@@ -324,7 +318,7 @@ class _HomeState extends State<CameraScreen> {
                             ),
                             style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.only(right: width * 47),
-                                primary: Colors.orange,
+                                primary: Color(0xff423d3d),
                                 onPrimary: Colors.white,
                                 //shadowColor: Colors.blue,
                                 //elevation: 2,
