@@ -47,6 +47,8 @@ dependencies:
   tflite: ^1.1.1
   csv: ^5.0.1
   unorm_dart: ^0.2.0
+  google_maps_flutter: ^2.2.8
+  path_provider: ^2.0.2
 
 dev_dependencies:
   flutter_test:

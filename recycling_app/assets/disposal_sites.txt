@@ -1,0 +1,17 @@
+PET1Nakano,35.673609, 139.7742648,yellowPet.png
+PET2Nakano,35.6977229, 139.6641024,yellowPet.png
+PET3Nakano,35.7018766, 139.6659722,yellowPet.png
+PET4Nakano,35.7077806, 139.683257,yellowPet.png
+PET5Nakano,35.7071116, 139.683879,yellowPet.png
+PET6Nakano,35.7066734, 139.6872889,yellowPet.png
+PET6Nakano,35.7068242, 139.6671323,yellowPet.png
+PET7Nakano,35.7153868, 139.6649009,yellowPet.png
+PET8Nakano,35.7097892, 139.6527817,yellowPet.png
+PET9Nakano,35.722104, 139.6332944,yellowPet.png
+PET10Nakano,35.7226793, 139.6448566,yellowPet.png
+PET11Nakano,35.7226347, 139.6443931,yellowPet.png
+PET12Nakano,35.7260968, 139.6477549,yellowPet.png
+PET13Nakano,35.7261026, 139.6389527,yellowPet.png
+PET14Nakano,35.7167421, 139.6419414,yellowPet.png
+PET15Nakano,35.697421,139.682461,yellowPet.png
+PET16Nakano,34.6473621,135.1347935,yellowPet.png
