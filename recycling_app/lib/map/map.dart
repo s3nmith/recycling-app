@@ -48,25 +48,8 @@ class _MapScreenState extends State<MapScreen> {
       print("$imageAssetName");
       final markerIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(size: Size(48, 48)),
-        'assets/yellowPet.png',
+        'assets/$imageAssetName',
       );
-
-      // if (imageAssetName.compareTo('yellowPet.png') == 0) {
-
-      // } else if (imageAssetName == 'marker2.png') {
-      //   markerIcon = await BitmapDescriptor.fromAssetImage(
-      //     ImageConfiguration(size: Size(48, 48)),
-      //     'assets/marker2.png',
-      //   );
-      // } else if (imageAssetName == 'marker3.png') {
-      //   markerIcon = await BitmapDescriptor.fromAssetImage(
-      //     ImageConfiguration(size: Size(48, 48)),
-      //     'assets/marker3.png',
-      //   );
-      // } else {
-      //   // Handle other cases or provide a default marker icon
-      //   markerIcon = BitmapDescriptor.defaultMarker;
-      // }
 
       final marker = Marker(
         markerId: markerId,
