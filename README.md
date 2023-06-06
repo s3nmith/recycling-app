@@ -37,7 +37,7 @@ To use the map functionality in the app, you need to add your own MAP API key to
 
 Here's an example of how the relevant section of the `AppDelegate.swift` file should look after adding the API key:
 
-    ```swift
+```swift
     import UIKit
     import Flutter
     import GoogleMaps
@@ -52,7 +52,7 @@ Here's an example of how the relevant section of the `AppDelegate.swift` file sh
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
       }
     }
-    ```
+```
 
 
 ## Known Issues
