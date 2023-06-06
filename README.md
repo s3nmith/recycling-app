@@ -52,6 +52,7 @@ Here's an example of how the relevant section of the `AppDelegate.swift` file sh
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
       }
     }
+    ```
 
 
 ## Known Issues
