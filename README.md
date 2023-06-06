@@ -23,6 +23,35 @@ Run the following command
 or
 
     flutter run --no-sound-null-safety  
+    
+   
+## Adding MAP-API-KEY
+
+To use the map functionality in the app, you need to add your own MAP API key to the `AppDelegate.swift` file. Follow the steps below:
+
+1. Open the project in Visual Studio Code.
+2. Locate the `AppDelegate.swift` file in the `ios` directory of your project.
+3. In the `AppDelegate.swift` file, find the `didFinishLaunchingWithOptions` method.
+4. Inside the method, look for the line that starts with `GMSServices.provideAPIKey`.
+5. Replace the placeholder string with your actual MAP API key.
+
+Here's an example of how the relevant section of the `AppDelegate.swift` file should look after adding the API key:
+
+```swift
+import UIKit
+import Flutter
+import GoogleMaps
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate {
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    GMSServices.provideAPIKey("YOUR_MAP_API_KEY") // Replace with your actual MAP API key
+    GeneratedPluginRegistrant.register(with: self)
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+}
 
 ## Known Issues
 
