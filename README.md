@@ -54,6 +54,8 @@ Here's an example of how the relevant section of the `AppDelegate.swift` file sh
     }
 ```
 The map should look like this:
+
+
 ![App Screenshot](locationsBins.png)
 
 ## Known Issues
