@@ -37,22 +37,21 @@ To use the map functionality in the app, you need to add your own MAP API key to
 
 Here's an example of how the relevant section of the `AppDelegate.swift` file should look after adding the API key:
 
-```swift
-import UIKit
-import Flutter
-import GoogleMaps
-@UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate {
-  override func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-  ) -> Bool {
-    GMSServices.provideAPIKey("YOUR_MAP_API_KEY") // Replace with your actual MAP API key
-    GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-}
-```swift
+    ```swift
+    import UIKit
+    import Flutter
+    import GoogleMaps
+    @UIApplicationMain
+    @objc class AppDelegate: FlutterAppDelegate {
+      override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+      ) -> Bool {
+        GMSServices.provideAPIKey("YOUR_MAP_API_KEY") // Replace with your actual MAP API key
+        GeneratedPluginRegistrant.register(with: self)
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      }
+    }
 
 
 ## Known Issues
