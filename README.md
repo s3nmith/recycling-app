@@ -1,4 +1,4 @@
-# SolutionChallenge2023-RecyclingApp
+# SolutionChallenge2023-Gaijin Recycle
 This is our team's project for the Solution Challenge 2023, it is an app. This app is a tool which foreigners can use inorder to sort their trash in accordance with the rules of each ward in Tokyo. 
 
 
